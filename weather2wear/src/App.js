@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import './user-homepage'
 
 function App() {
   return (
     <div className="App">
-      <h1 class="welcomePageHeader">Welcome to Dress Me!!</h1>
+      <h1 class="welcomePageHeader">Welcome to Weather2Wear!</h1>
 <h3>Please Log In to Your Account</h3>
 <div>
-<form action="user-homepage.html" method="post">
+<form action="user-homepage.js" method="post">
    <label>First Name <input type="text" name="firstName"/> </label>
     <label>Last Name <input type="text" name="lastName"/> </label>
     <label>Email<input type="email" name="emailAddress"/></label>
