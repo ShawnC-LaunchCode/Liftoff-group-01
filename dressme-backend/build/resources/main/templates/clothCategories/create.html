@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<form method="post">
+    <div class="form-group">
+        <label>Name
+            <input th:field="${clothCategory.name}" class="form-control">
+        </label>
+        <span th:errors="${clothCategory.name}" class="error"></span>
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary">
+</form>
+</body>
+</html>
