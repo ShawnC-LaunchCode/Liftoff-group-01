@@ -1,9 +1,7 @@
 package com.launchcode.dressmebackend.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +10,9 @@ import jakarta.validation.constraints.NotNull;
 public class Cloth extends AbstractEntity{
 
     @ManyToOne
+    @JoinColumn(name="cloth_category_id")
     @NotNull(message = "Category is required")
+   // @JsonIgnore
     private ClothCategory clothCategory;
 
     @NotBlank(message = "Image Url is required.")

@@ -2,48 +2,58 @@ package com.launchcode.dressmebackend.controllers;
 
 import com.launchcode.dressmebackend.data.ClothCategoryRepository;
 import com.launchcode.dressmebackend.models.ClothCategory;
+import com.launchcode.dressmebackend.exception.ClothCategoryNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("clothCategories")
 public class ClothCategoryController {
 
     @Autowired
     private ClothCategoryRepository clothCategoryRepository;
 
-    @GetMapping
-    public String displayAllCategories(Model model) {
-        model.addAttribute("title", "All Categories");
-        model.addAttribute("categories", clothCategoryRepository.findAll());
-        return "clothCategories/index";
-    }
+    private ClothCategory clothCategory;
 
-    @GetMapping("create")
-    public String renderCreateEventCategoryForm(Model model) {
-        model.addAttribute("title", "Create Category");
-        model.addAttribute(new ClothCategory());
-        return "clothCategories/create";
-    }
+
+    @GetMapping
+    public List<ClothCategory> getAllClothCategory() {
+        return clothCategoryRepository.findAll();
+       }
 
     @PostMapping("create")
-    public String processCreateEventCategoryForm(@Valid @ModelAttribute ClothCategory clothCategory,
-                                                 Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Create Category");
-            model.addAttribute(new ClothCategory());
-            return "clothCategories/create";
-        }
-
-        clothCategoryRepository.save(clothCategory);
-        return "redirect:/clothCategories";
+    public ClothCategory addClothCategory(@RequestBody ClothCategory clothCategory) {
+        return clothCategoryRepository.save(clothCategory);
     }
+
+    @GetMapping("/{id}")
+    public ClothCategory getClothCategoryById(@PathVariable int id) {
+        return clothCategoryRepository.findById(id)
+                .orElseThrow(() -> new ClothCategoryNotFoundException(id));
+    }
+
+    @PutMapping("/{id}")
+    public ClothCategory updateClothCategory(@RequestBody ClothCategory clothCategory, @PathVariable int id) {
+        return clothCategoryRepository.findById(id)
+                .map(clothCategory1 -> {
+                    clothCategory1.setName(clothCategory.getName());
+                    return clothCategoryRepository.save(clothCategory1);
+                }).orElseThrow(() -> new ClothCategoryNotFoundException(id));
+    }
+    @DeleteMapping("/{id}")
+    public String deleteClothCategory(@PathVariable int id){
+        if(!clothCategoryRepository.existsById(id)){
+            throw new ClothCategoryNotFoundException(id);
+        }
+        clothCategoryRepository.deleteById(id);
+        return  "ClothCategory with id "+id+" has been deleted success.";
+    }
+
+
 }
