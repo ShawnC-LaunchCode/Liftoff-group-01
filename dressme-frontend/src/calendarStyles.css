@@ -1,0 +1,143 @@
+body {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+button {
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px grey;
+    border: none;
+    outline: none;
+    padding: auto;
+    border-radius: 5px;
+    color: black;
+}
+
+.container {
+    width: 770px;
+}
+
+.calendar-header {
+    padding: 10px;
+    color: black;
+    font-size: 26px;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-header button {
+    background-color: grey;
+}
+
+.calendar-weekdays {
+    width: 100%;
+    display: flex;
+    color: cadetblue;
+}
+
+.calendar-weekdays li {
+    list-style-type: none;
+    width: 100px;
+    padding: 10px;
+}
+
+.calendar-body {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.day {
+    width: 100px;
+    padding: 10px;
+    height: 100px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 5px;
+    box-shadow: 0px 0px 3px grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.day:hover {
+    background-color: white;
+}
+
+.day + #currentDay {
+    background-color: white;
+}
+
+.event {
+    font-size: 10px;
+    padding: 3px;
+    background-color: rgb(49, 163, 240);
+    color: white;
+    border-radius: 5px;
+    max-height: 55px;
+    overflow: hidden;
+}
+
+.padding {
+    cursor: default;
+    background-color: white;
+    box-shadow: none;
+}
+
+#newEvent, #deleteEvent {
+    display: none;
+    z-index: 20;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 5px;
+    width: 350px;
+    top: 100px;
+    left: calc(50% - 175px);
+    position: absolute;
+    font-family: sans-serif;
+}
+
+#eventTitleInput {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px grey;
+}
+
+#eventTitleInput.error {
+    border: 2px solid red;
+}
+
+#cancelButton, #deleteButton {
+    background-color: rgb(253, 124, 124);
+}
+
+#saveButton, #closeButton {
+    background-color: lightblue;
+}
+
+#eventText {
+    font-size: 14px;
+}
+
+#modelBackDrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: black;
+}    
