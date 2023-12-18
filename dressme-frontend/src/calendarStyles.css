@@ -8,7 +8,7 @@ body {
 button {
     width: 75px;
     cursor: pointer;
-    box-shadow: 0px 0px 2px grey;
+    box-shadow: 0px 0px 2px rgb(197, 193, 193);
     border: none;
     outline: none;
     padding: auto;
@@ -30,22 +30,22 @@ button {
 }
 
 .calendar-header button {
-    background-color: grey;
+    background-color: rgb(200, 199, 199);
 }
 
 .calendar-weekdays {
     width: 100%;
     display: flex;
-    color: cadetblue;
+    color: black;
 }
 
 .calendar-weekdays li {
     list-style-type: none;
-    width: 100px;
+    width: 90px;
     padding: 10px;
 }
 
-.calendar-body {
+#calendar {
     width: 100%;
     margin: auto;
     display: flex;
@@ -131,7 +131,7 @@ button {
     font-size: 14px;
 }
 
-#modelBackDrop {
+#modalBackDrop {
     display: none;
     top: 0px;
     left: 0px;
