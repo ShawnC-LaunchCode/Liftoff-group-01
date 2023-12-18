@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<!--<table class="table table-striped">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Cloths Name</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tr th:each="cloth : ${cloths}">-->
+<!--        <td><a th:href="'/cloths/detail?clothId=' + ${cloth.id}" th:text="${cloth.name}"></a></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<p th:unless="${cloths} and ${cloths.size()}">No Cloths!</p>
+<!--<ul>-->
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Gender</th>
+        <th>Name</th>
+        <th>ClothCategory</th>
+        <th>Image</th>
+        <th>WeatherTag</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tr th:each = "cloth: ${cloths}">
+        <td th:text="${cloth.id}"></td>
+        <td th:text="${cloth.gender.genderName}"></td>
+        <td th:text="${cloth.name}"></td>
+        <td th:text="${cloth.clothCategory.name}"></td>
+        <td><img th:src="${cloth.imageUrl}" width="50" height="60"/></td>
+        <td th:text="${cloth.getWeatherTag.weatherName}"></td>
+        <td>
+            <a th:href="@{/cloths/edit/{id}(id=${cloth.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/cloths/delete/{id}(id=${cloth.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
