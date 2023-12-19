@@ -12,7 +12,7 @@ function CreateAccount() {
       <label>Last Name <input type="text" name="lastName"/> </label>
       <label>Email <input type="email" name="emailAddress"/></label>
       <label>Verify Password <input type="email" name="verifyEmailAddress"/></label>
-      <input type="submit" formaction="./App.js" value="createAccount"/>
+      <input type="submit" formAction="./App.js" value="createAccount"/>
   </form>
   </div>
       </div>

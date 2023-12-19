@@ -36,6 +36,7 @@ function App() {
     </div>
   );
 }
+//TODO: add react files to the src folder
 
 export default App;
  
