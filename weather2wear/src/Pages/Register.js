@@ -1,13 +1,13 @@
 import React from "react";
 
-function CreateAccount() {
+function Register() {
    
     return (
       <div className="CreateAccount">
         <h1 class="CreateAccountPageHeader">Welcome to Weather2Wear!</h1>
   <h3>Create a New Account Below</h3>
   <div>
-  <form action="./App.js" method="post">
+  <form action="/api/Register" method="post">
      <label>First Name <input type="text" name="firstName"/> </label>
       <label>Last Name <input type="text" name="lastName"/> </label>
       <label>Email <input type="email" name="emailAddress"/></label>
@@ -19,4 +19,4 @@ function CreateAccount() {
     );
   }
   
-  export default CreateAccount;
+  export default Register;

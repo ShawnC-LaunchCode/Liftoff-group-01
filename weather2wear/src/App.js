@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
 import './Pages/UserHomepage.js'
-import LoginForm from './Pages/LoginForm.js';
-import CreateAccount from './Pages/CreateAccount.js';
+import Login from './Pages/Login.js';
+import Register from './Pages/Register.js';
 import UserHomepage from './Pages/UserHomepage.js';
 import Home from './Pages/Home.js';
 import Events from './Pages/Events.js';
@@ -21,9 +21,8 @@ function App() {
     
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/CreateAccount" element={<CreateAccount />} />
-        <Route path="/LoginForm" element={<LoginForm />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/HomePage" element={<UserHomepage/>} />
         <Route path="/Notifications" element={<Notifications/>} />
         <Route path="/Settings" element={<Settings/>} />
