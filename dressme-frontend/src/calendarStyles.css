@@ -2,18 +2,18 @@ body {
     display: flex;
     margin-top: 50px;
     justify-content: center;
-    background-color: whitesmoke;
+    background-color: #FFFCFF;
 }
 
 button {
     width: 75px;
     cursor: pointer;
-    box-shadow: 0px 0px 2px rgb(197, 193, 193);
+    box-shadow: 0px 0px 2px grey;
     border: none;
     outline: none;
     padding: auto;
     border-radius: 5px;
-    color: black;
+    color: white;
 }
 
 #header {
@@ -26,7 +26,7 @@ button {
 }
 
 #header button {
-    background-color: rgb(200, 199, 199);
+    background-color: #92a1d1;
 }
 
 #container {
@@ -36,7 +36,7 @@ button {
 #weekdays {
     width: 100%;
     display: flex;
-    color: black;
+    color: #247ba0;
 }
 
 #weekdays div {
@@ -60,24 +60,24 @@ button {
     box-sizing: border-box;
     background-color: white;
     margin: 5px;
-    box-shadow: 0px 0px 3px grey;
+    box-shadow: 0px 0px 3px #CBD4C2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .day:hover {
-    background-color: white;
+    background-color: #e8faed;
 }
 
 .day + #currentDay {
-    background-color: white;
+    background-color: #e8f4fa;
 }
 
 .event {
     font-size: 10px;
     padding: 3px;
-    background-color: rgb(49, 163, 240);
+    background-color: #58bae4;
     color: white;
     border-radius: 5px;
     max-height: 55px;
@@ -86,7 +86,7 @@ button {
 
 .padding {
     cursor: default;
-    background-color: white;
+    background-color: #FFFCFF;
     box-shadow: none;
 }
 
@@ -94,7 +94,7 @@ button {
     display: none;
     z-index: 20;
     padding: 25px;
-    background-color: white;
+    background-color: #e8f4fa;
     box-shadow: 0px 0px 3px black;
     border-radius: 5px;
     width: 350px;
@@ -120,11 +120,11 @@ button {
 }
 
 #cancelButton, #deleteButton {
-    background-color: rgb(253, 124, 124);
+    background-color: #d36c6c;
 }
 
 #saveButton, #closeButton {
-    background-color: lightblue;
+    background-color: #92a1d1;
 }
 
 #eventText {
@@ -139,5 +139,5 @@ button {
     width: 100vw;
     height: 100vh;
     position: absolute;
-    background-color: black;
+    background-color: rgba(0,0,0,0.8);
 }    
