@@ -1,24 +1,8 @@
-const date = new Date();
-const day = date.getDate();
-const month = date.getMonth();
-const year = date.getFullYear();
-const calendar = document.getElementById('calendar');
-const currentDate = document.querySelector(".calendar-current-date");
+let nav = 0;
+let clicked = null;
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
-const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-];
+const calendar = document.getElementById('calendar');
 
 const weekdays = [
     "Sunday", 
@@ -31,36 +15,58 @@ const weekdays = [
 ];
 
 function load() {
-    const firstDay = new Date(year, month, 1);
-    const lastDate = new Date(year, month + 1, 0).getDate();
-    const lastDay = new Date(year, month, lastDate);
+    const date = new Date();
 
-    console.log(lastDay);
+    if (nav !== 0) {
+        date.setMonth(new Date().getMonth() + nav);
+    }
 
-    const dateString = firstDay.toLocaleDateString('en-us', {
-        weekday: "long",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    const firstDayOfMonth = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
     })
+    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
-    currentDate.innerText = `${months[month]} ${year}`;
+    document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+    
+    calendar.innerHTML = '';
+    
+    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
+        const daySquare = document.createElement('div');
+        daySquare.classList.add('day');
 
-    const paddingDay = weekdays.indexOf(dateString.split(", ")[0]);
+        if (i > paddingDays) {
+            daySquare.innerText = i - paddingDays;
 
-    for (let i = 1; i < paddingDay + lastDate; i++) {
-        const calendarSquare = document.createElement('div');
-        calendarSquare.classList.add('day');
-
-        if (i > paddingDay) {
-            calendarSquare.innerText = i - paddingDay;
-
-            calendarSquare.addEventListener("click", () => console.log("click"));
+            daySquare.addEventListener('click', () => console.log('click'));
         } else {
-            calendarSquare.classList.add('padding')
+            daySquare.classList.add('padding');
         }
-        calendar.appendChild(calendarSquare);
+
+        calendar.appendChild(daySquare);
     }
 }
 
+function initButtons() {
+    document.getElementById('nextButton').addEventListener('click', () => {
+        nav++;
+        load();
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+        nav--;
+        load();
+    });
+}
+
+initButtons();
 load();

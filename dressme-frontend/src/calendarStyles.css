@@ -16,11 +16,7 @@ button {
     color: black;
 }
 
-.container {
-    width: 770px;
-}
-
-.calendar-header {
+#header {
     padding: 10px;
     color: black;
     font-size: 26px;
@@ -29,17 +25,21 @@ button {
     justify-content: space-between;
 }
 
-.calendar-header button {
+#header button {
     background-color: rgb(200, 199, 199);
 }
 
-.calendar-weekdays {
+#container {
+    width: 770px;
+}
+
+#weekdays {
     width: 100%;
     display: flex;
     color: black;
 }
 
-.calendar-weekdays li {
+#weekdays div {
     list-style-type: none;
     width: 90px;
     padding: 10px;
@@ -90,7 +90,7 @@ button {
     box-shadow: none;
 }
 
-#newEvent, #deleteEvent {
+#newEventModal, #deleteEventModal {
     display: none;
     z-index: 20;
     padding: 25px;
