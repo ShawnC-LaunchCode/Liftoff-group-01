@@ -64,7 +64,8 @@ function ListClothCategory() {
                     <h2>Clothes Category Listing</h2>
                 </div> <div className="card-body">
                     <div className="divbtn">
-                        <Link to="/clothcategory/create" className="btn btn-success ">Add New (+)</Link>
+                        <Link to="/clothcategory/create" className="btn btn-success ">Add New (+)</Link>&nbsp;
+                        <Link to="/cloths" className="btn btn-primary ">Back To Clothes</Link>
                     </div>&nbsp;
 
                     

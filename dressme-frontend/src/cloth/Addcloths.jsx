@@ -153,7 +153,7 @@ console.log(data);
                                             {category && category.map(item => (
                                                 <option value={item.id} text={item.name}>{item.name}</option>
                                             ))}
-                                            </select>&nbsp;<a href="/">Add Clothes Category</a>
+                                            </select>&nbsp;<a href="/listclothcategory">Add Clothes Category</a>
                                             <input type="hidden" value={cid} ></input><input type="hidden" value={ccategory} ></input>
                                         </div>
                                     </div>&nbsp;&nbsp;

@@ -42,7 +42,7 @@ function Editclothcategory() {
         //alert('Saved successfully.')
         Swal.fire({icon: "success",
         title: "Updated successfully."});
-        navigate('/');
+        navigate('/listclothcategory');
       }).catch((err)=>{
         console.log(err.message)
       })
@@ -82,7 +82,7 @@ function Editclothcategory() {
                                 <div className="col-lg-12">
                                     <div className="form-group">
                                        <button className="btn btn-success" type="submit">Save</button>
-                                       <Link to="/" className="btn btn-danger">Back</Link>
+                                       <Link to="/listclothcategory" className="btn btn-danger">Back</Link>
                                     </div>
                                 </div>
 
