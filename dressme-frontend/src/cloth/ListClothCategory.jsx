@@ -61,7 +61,7 @@ function ListClothCategory() {
 <div className="container">
 <div className="card">
 <div className="card-title">
-                    <h2>Cloth Category Listing</h2>
+                    <h2>Clothes Category Listing</h2>
                 </div> <div className="card-body">
                     <div className="divbtn">
                         <Link to="/clothcategory/create" className="btn btn-success ">Add New (+)</Link>
@@ -70,7 +70,7 @@ function ListClothCategory() {
                     
                     <div className="d-flex w-60 vh-50 justify-content-center aligns-item-center">
                 <table className="table table-hover  caption-top table-sm " >
-                  <caption>Cloth Category Listing</caption>
+                  <caption>Clothes Category Listing</caption>
           <thead class="table-light" >
     <tr >
       <th scope="col" class="w-25">ID</th>

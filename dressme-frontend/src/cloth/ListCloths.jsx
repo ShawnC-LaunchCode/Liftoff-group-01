@@ -61,7 +61,7 @@ function ListCloths() {
 <div className="container">
 <div className="card">
 <div className="card-title">
-                    <h2>Cloths Listing</h2>
+                    <h2>Clothes Listing</h2>
                 </div> <div className="card-body">
                     <div className="divbtn">
                         <Link to="/cloths/create" className="btn btn-success ">Add New (+)</Link>
@@ -73,12 +73,12 @@ function ListCloths() {
 
                     <div className="d-flex w-60 vh-50 justify-content-center aligns-item-center">
                 <table className="table table-hover  caption-top " >
-                  <caption>Cloths Listing</caption>
+                  <caption>Clothes Listing</caption>
           <thead class="table-light" >
     <tr >
       <th scope="col" class="w-25">ID</th>
       <th scope="col" class="w-25"> Name</th>
-      <th scope="col" class="w-25"> clothCategory</th>
+      <th scope="col" class="w-25"> clothesCategory</th>
       <th scope="col" class="w-25"> imageUrl</th>
       <th scope="col" class="w-25"> gender</th>
       <th scope="col" class="w-25"> weatherTag</th> 

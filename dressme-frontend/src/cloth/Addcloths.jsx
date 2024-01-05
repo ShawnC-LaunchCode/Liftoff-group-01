@@ -102,7 +102,7 @@ console.log(data);
 
                         <div className="card" style={{"textAlign":"left"}}>
                             <div className="card-title">
-                                <h2> Add ClothCategory</h2>
+                                <h2> Add Clothes Category</h2>
                             </div>
                             <div className="card-body">
 
@@ -121,7 +121,7 @@ console.log(data);
                                     
                                     <div className="col-lg-12">
                                         <div className="form-group">
-                                            <label>Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <select className="custom-select" id="gendername" onChange={handleGenderChange} >
                                             
                                                 <option key="MEN" value="MEN">Men</option>
@@ -133,7 +133,7 @@ console.log(data);
                                     </div>&nbsp;&nbsp;
                                     <div className="col-lg-12">
                                         <div className="form-group">
-                                            <label>Weather Tag</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>Weather Tag</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <select className="custom-select" value={weatherTag} onChange={handleWeatherChange} >
                                             
                                                 <option key="SUMMER" value="SUMMER">Summer</option>
@@ -148,12 +148,12 @@ console.log(data);
                                     </div>&nbsp;&nbsp;
                                     <div className="col-lg-12">
                                         <div className="form-group" >
-                                            <label>Cloth Category</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>Clothes Category</label>&nbsp;
                                             <select className="custom-select" id="Categoryname" onChange={handleChange}>
                                             {category && category.map(item => (
                                                 <option value={item.id} text={item.name}>{item.name}</option>
                                             ))}
-                                            </select>&nbsp;<a href="/">Add Cloth Category</a>
+                                            </select>&nbsp;<a href="/">Add Clothes Category</a>
                                             <input type="hidden" value={cid} ></input><input type="hidden" value={ccategory} ></input>
                                         </div>
                                     </div>&nbsp;&nbsp;

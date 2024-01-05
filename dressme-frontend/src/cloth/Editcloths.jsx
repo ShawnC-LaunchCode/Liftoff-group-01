@@ -182,7 +182,7 @@ function Editcloths() {
                                     </div>&nbsp;&nbsp;
                                     <div className="col-lg-12">
                                         <div className="form-group" >
-                                            <label>Cloth Category</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>Clothes Category</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                             <select className="custom-select" value={cid} id="Categoryname" onChange={handleChange}>
                                             {category && category.map(item => (
                                                 <option value={item.id} text={item.name}>{item.name}</option>

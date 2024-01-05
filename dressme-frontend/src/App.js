@@ -11,6 +11,8 @@ import ListCloths from './cloth/ListCloths';
 import Addcloths from './cloth/Addcloths';
 import Editcloths from './cloth/Editcloths';
 import Searchfilter from './cloth/Searchfilter';
+import WeatherApp from './Weather/WeatherApp';
+import SearchCities from './Weather/SearchCities';
 
 
 
@@ -27,6 +29,8 @@ function App() {
           <Route path='/cloths/edit/:c_id' element={<Editcloths />}></Route>
           <Route path='/clothcategory/create' element={<Addclothcategory />}></Route>
           <Route path='/clothcategory/edit/:cid' element={<Editclothcategory />}></Route> 
+          <Route path='/weather' element={<WeatherApp />}></Route>
+          <Route path='/searchcities' element={<SearchCities />}></Route>
         </Routes>
       </BrowserRouter>
       

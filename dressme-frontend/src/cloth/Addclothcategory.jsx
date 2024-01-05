@@ -47,7 +47,7 @@ console.log(data);
 
                         <div className="card" style={{"textAlign":"left"}}>
                             <div className="card-title">
-                                <h2> Add ClothCategory</h2>
+                                <h2> Add ClothesCategory</h2>
                             </div>
                             <div className="card-body">
 
