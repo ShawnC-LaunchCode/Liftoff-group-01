@@ -5,6 +5,8 @@ import com.launchcode.dressmebackend.models.ClothCategory;
 import com.launchcode.dressmebackend.exception.ClothCategoryNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("clothCategories")
 public class ClothCategoryController {
@@ -26,6 +29,13 @@ public class ClothCategoryController {
     public List<ClothCategory> getAllClothCategory() {
         return clothCategoryRepository.findAll();
        }
+
+//    @GetMapping
+//    public ResponseEntity<?> getAllClothCategory() {
+//
+//        List<ClothCategory> artworks = (List<ClothCategory>) clothCategoryRepository.findAll();
+//        return new ResponseEntity<>(artworks, HttpStatus.OK);
+//    }
 
     @PostMapping("create")
     public ClothCategory addClothCategory(@RequestBody ClothCategory clothCategory) {

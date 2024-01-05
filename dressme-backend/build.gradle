@@ -23,6 +23,7 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation("org.springframework.security:spring-security-crypto:5.5.8")
 }
 
 tasks.named('test') {

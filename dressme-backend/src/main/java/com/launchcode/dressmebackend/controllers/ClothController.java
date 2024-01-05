@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("cloths")
 public class ClothController {
@@ -49,6 +50,10 @@ public class ClothController {
         return clothRepository.findById(id)
                 .map(cloth1 -> {
                     cloth1.setName(cloth.getName());
+                    cloth1.setClothCategory(cloth.getClothCategory());
+                    cloth1.setWeatherTag(cloth.getWeatherTag());
+                    cloth1.setGender(cloth.getGender());
+                    cloth1.setImageUrl(cloth.getImageUrl());
                     return clothRepository.save(cloth1);
                 }).orElseThrow(() -> new ClothNotFoundException(id));
     }

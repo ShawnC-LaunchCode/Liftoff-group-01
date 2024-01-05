@@ -1,6 +1,7 @@
 package com.launchcode.dressmebackend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -13,6 +14,7 @@ public class Cloth extends AbstractEntity{
     @JoinColumn(name="cloth_category_id")
     @NotNull(message = "Category is required")
    // @JsonIgnore
+    //@JsonManagedReference
     private ClothCategory clothCategory;
 
     @NotBlank(message = "Image Url is required.")
