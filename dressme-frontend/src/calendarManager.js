@@ -7,6 +7,8 @@ const newEventModal = document.getElementById('newEventModal');
 const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
+const dressCodeInput = document.getElementById('dressCodeInput');
+
 const weekdays = [
     "Sunday", 
     "Monday",
@@ -21,9 +23,11 @@ function openModal(date) {
     clicked = date;
 
     const eventForDay = events.find(e => e.date == clicked);
+    const dressCodeForDay = events.find(e => e.date == clicked);
 
     if (eventForDay) {
         document.getElementById('eventText').innerText = eventForDay.title;
+        document.getElementById('dressCodeText').innerText = dressCodeForDay.code;
         deleteEventModal.style.display = 'block';
     } else {
         newEventModal.style.display = 'block';
@@ -90,10 +94,12 @@ function load() {
 
 function closeModal() {
     eventTitleInput.classList.remove('error');
+    dressCodeInput.classList.remove('error');
     newEventModal.style.display = 'none';
     deleteEventModal.style.display = 'none';
     backDrop.style.display = 'none';
     eventTitleInput.value = '';
+    dressCodeInput.value = '';
     clicked = null;
     load();
 }
@@ -105,6 +111,7 @@ function saveEvent() {
         events.push({
             date: clicked,
             title: eventTitleInput.value,
+            code: dressCodeInput.value,
         });
 
         localStorage.setItem('events', JSON.stringify(events));
