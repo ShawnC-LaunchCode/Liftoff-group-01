@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Home from './Pages/Home.js';
-import Events from './Pages/Events.js';
-import LogOut from './Pages/LogOut.js';
-import MyCloset from './Pages/MyCloset.js';
-import Notifications from './Pages/Notifications.js';
-import Settings from './Pages/Settings.js';
-import Userpage from './Pages/Userpage';
+// import Home from './Pages/Home.js';
+// import Events from './Pages/Events.js';
+// import LogOut from './Pages/LogOut.js';
+// import MyCloset from './Pages/MyCloset.js';
+// import Notifications from './Pages/Notifications.js';
+// import Settings from './Pages/Settings.js';
+// import Userpage from './Pages/Userpage';
 
 
 export default function NavBar(){

@@ -1,5 +1,6 @@
 import React from "react";
-import Header from "../Components/Header";
+import Header from "../components/Header";
+import { Link } from "react-router-dom";
 
 export default function Home(){
     return(
@@ -7,11 +8,16 @@ export default function Home(){
         <Header/>
         <h1>Home Page</h1>
         <div buttons>
+<a href="/Login">
+<button name="logInButton" id="logInButton" >Log in to Your Account</button>
+</a>
 
-<button name="logInButton" id="logInButton">Log in to Your Account</button>
 
 <br/> <br/> 
-<button name="createAccountButton">Create Account</button>
+<a href= "/Register">
+<button name="createAccountButton" >Create Account</button>
+</a>
+
 
 </div> 
         </>
