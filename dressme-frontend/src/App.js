@@ -25,6 +25,9 @@ import MyCloset from './Pages/MyCloset.js';
 import Notifications from './Pages/Notifications.js';
 import Settings from './Pages/Settings.js';
 import Userpage from './Pages/Userpage';
+import Cweather from './Weather/Cweather';
+import Checkweather from './Weather/Checkweather';
+import Sample from './Weather/Sample';
 
 
 
@@ -55,6 +58,9 @@ function App() {
           <Route path='/clothcategory/edit/:cid' element={<Editclothcategory />}></Route> 
           <Route path='/weather' element={<WeatherApp />}></Route>
           <Route path='/searchcities' element={<SearchCities />}></Route>
+          <Route path='/Cweather' element={<Cweather />}></Route>
+          <Route path='/Checkweather' element={<Checkweather />}></Route>
+          <Route path='/Sample' element={<Sample/>}></Route>
         </Routes>
       </BrowserRouter>
       

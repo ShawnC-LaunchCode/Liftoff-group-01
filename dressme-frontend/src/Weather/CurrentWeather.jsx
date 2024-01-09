@@ -1,47 +1,64 @@
 import React from 'react';
-import "./CurrentWeather.css";
+
 
 const CurrentWeather = ({ data }) => {
     return (
-      <div className="weather">
-        <div className="top">
-          <div>
-            <p className="city">{data.city}</p>
-            <p className="weather-description">{data.weather[0].description}</p>
-          </div>
-          <img
-            alt="weather"
-            className="weather-icon"
-            src={`icons/${data.weather[0].icon}.png`}
-          />
-        </div>
-        <div className="bottom">
-          <p className="temperature">{Math.round(data.main.temp)}°C</p>
-          <div className="details">
-            <div className="parameter-row">
-              <span className="parameter-label">Details</span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">Feels like</span>
-              <span className="parameter-value">
-                {Math.round(data.main.feels_like)}°C
-              </span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">Wind</span>
-              <span className="parameter-value">{data.wind.speed} m/s</span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">Humidity</span>
-              <span className="parameter-value">{data.main.humidity}%</span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">Pressure</span>
-              <span className="parameter-value">{data.main.pressure} hPa</span>
-            </div>
-          </div>
-        </div>
+       
+      <div>
+         <div class="weather__body"><br />
+      <h1 class="weather__city"><b>{data.city}</b></h1><br />
+      <div class="weather__datetime"><h2><br />
+                   </h2>
+             </div>
+      <div class="weather__forecast"><h1>
+                    {Math.round(data.main.temp)}°<span>C</span>
+                    </h1></div>
+      <div class="weather__icon"> <img
+              src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+              alt="weather-icon"
+            />
+             </div>
+      
+      <div class="weather__minmax">
+      <b>{data.weather[0].description}</b>
       </div>
+  </div>
+
+  <div class="weather__info">
+            <div class="weather__card">
+                <i class="fa-solid fa-temperature-full"></i>
+                <div>
+                    <p><b>Feels Like</b></p>
+                    <p class="weather__realfeel"><b> {Math.round(data.main.feels_like)}°C</b></p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-droplet"></i>
+                <div>
+                    <p><b>Humidity</b></p>
+                    <p class="weather__humidity"><b>{data.main.humidity}%</b></p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-wind"></i>
+                <div>
+                    <p><b>Wind Speed</b></p>
+                    <p class="weather__wind"><b>{data.speed} m/s</b></p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-gauge-high"></i>
+                <div>
+                    <p><b>Pressure</b></p>
+                    <p class="weather__pressure"><b>{data.main.pressure} </b></p>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+        
+     
     );
   };
   
