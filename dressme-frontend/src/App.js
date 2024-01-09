@@ -28,6 +28,7 @@ import Userpage from './Pages/Userpage';
 import Cweather from './Weather/Cweather';
 import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
+import NavBar from './components/NavBar';
 
 
 
@@ -37,6 +38,7 @@ function App() {
   
   return (
     <div className="App">
+      
       <BrowserRouter>
         <Routes>
         <Route path="/" element={<Home />} />

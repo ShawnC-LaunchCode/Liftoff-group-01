@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../Components/Header";
-import NavBar from "../Components/NavBar";
-import SetEverydayDresscode from "../Components/SetEverydayDresscode";
-import SetStyle from "../Components/SetStyle";
+import Header from "../components/Header";
+import NavBar from "../components/NavBar";
+import SetEverydayDresscode from "../components/SetEverydayDresscode";
+import SetStyle from "../components/SetStyle";
 
 
 export default function Settings(){

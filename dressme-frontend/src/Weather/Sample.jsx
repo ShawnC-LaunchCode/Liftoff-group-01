@@ -10,6 +10,7 @@ import Forecast from './Forecast';
 import Checkweather from './Checkweather';
 
 
+
 const Sample = () => {
 
     const [query, setQuery] = useState('');
@@ -19,6 +20,7 @@ const Sample = () => {
     const [lat, setLat] = useState([]);
     const [long, setLong] = useState([]);
     const [data, setData] = useState([]);
+    const [units, setUnits] = useState('metric');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +29,7 @@ const Sample = () => {
                 setLong(position.coords.longitude);
             });
 
-            await fetch(`https://api.openweathermap.org/data/2.5//weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`)
+            await fetch(`https://api.openweathermap.org/data/2.5//weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=${units}`)
                 .then(res => res.json())
                 .then(result => {
                     setData(result)
@@ -35,6 +37,7 @@ const Sample = () => {
                 });
         }
         fetchData();
+
     }, [lat, long])
 
 
@@ -45,12 +48,12 @@ const Sample = () => {
         if (e.key === 'Enter') {
             try {
                 const { data } = await axios.get(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=metric`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=${units}`
                 );
                 setWeather(data);
 
                 const forecastData = await axios.get(
-                    `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=${API_KEY}&units=metric`
+                    `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=${API_KEY}&units=${units}`
                 );
                 setForecast(forecastData.data.list);
                 setQuery('');
@@ -64,10 +67,10 @@ const Sample = () => {
         const [lat, lon] = searchData.value.split(" ");
 
         const currentWeatherFetch = fetch(
-            `https://api.openweathermap.org/data/2.5//weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+            `https://api.openweathermap.org/data/2.5//weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
         );
         const forecastFetch = fetch(
-            `https://api.openweathermap.org/data/2.5//forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+            `https://api.openweathermap.org/data/2.5//forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
         );
 
         Promise.all([currentWeatherFetch, forecastFetch])
@@ -81,7 +84,14 @@ const Sample = () => {
             .catch(console.log);
     };
 
+    const unitChange = (e) => {
+        //alert("hi");
+        const selectedValue = e.target.value;
+        console.log(selectedValue);
+        setUnits(selectedValue);
+        //handleOnSearchChange();
 
+    }
 
     return (
         <div class="backimage">
@@ -92,15 +102,16 @@ const Sample = () => {
                             <br />&nbsp;
                         </form>
                         <div class="weather__units">
-                            <span class="weather_unit_celsius"></span>
-                            <span class="weather_unit_farenheit"></span>
+
+                            <span class="weather_unit_celsius"><input type="radio" name="exampleRadios" id="metric" value="metric" checked={units === 'metric'} onClick={unitChange} /><b>Celsius</b></span>&nbsp;&nbsp;
+                            <span class="weather_unit_farenheit"><input type="radio" name="exampleRadios" id="imperial" value="imperial" checked={units === 'imperial'} onClick={unitChange} /><b>Farenheit</b></span>
                         </div>
                     </div>
                     {(typeof data.main != 'undefined') ?
                         <div class="weather__body">
                             <h1 class="weather__city"><b> {data.name} , {data.sys.country} </b></h1>
 
-                            <Checkweather></Checkweather>
+                            <Checkweather units={units}></Checkweather>
                         </div> :
                         <div>Loading...</div>
                     }
@@ -120,7 +131,7 @@ const Sample = () => {
                                 {currentWeather && (
 
 
-                                    <CurrentWeather data={currentWeather} />
+                                    <CurrentWeather data={currentWeather} units={units} />
 
                                 )}
 
@@ -132,9 +143,9 @@ const Sample = () => {
 
                 </div>
                 <div class="row">
-                  <div class="col-md-8"><br/><br/>
-                    Forecast
-                  </div>
+                    <div class="col-md-8"><br /><br />
+                        Forecast
+                    </div>
                 </div>
 
             </div></div>
