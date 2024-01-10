@@ -29,6 +29,7 @@ import Cweather from './Weather/Cweather';
 import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
+import Forecast from './Weather/Forecast';
 
 
 
@@ -64,6 +65,7 @@ function App() {
           <Route path='/Cweather' element={<Cweather />}></Route>
           <Route path='/Checkweather' element={<Checkweather />}></Route>
           <Route path='/Sample' element={<Sample/>}></Route>
+          <Route path='/Forecast' element={<Forecast/>}></Route>
          
           
         </Routes>

@@ -146,12 +146,12 @@ const Sample = () => {
 
                     </div>
 
-                </div>
+                </div><br/>
                 <div class="row">
-                    {/* <div class="col-md-8"><br /><br />
-                        Forecast
-                        {forecast && <Forecast data={forecast} />}
-                    </div> */}
+                    <div class="col px-md-5 bg-primary rounded-6"><br /><br />
+                        
+                        {forecast && <Forecast units={units} />}
+                    </div>
                 </div>
 
             </div></div></div>

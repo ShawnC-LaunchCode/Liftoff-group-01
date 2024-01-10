@@ -94,63 +94,67 @@ const WeatherApp = () => {
     }
 
     return (
-        <div ><NavBar/>
-        <div class="header"><b>Weather2Wear Application</b></div>
-        <div class="backimage">
-            <div class="container">
-                <div class="row"><div className='col-md-5 '>
-                    <div class="weather__header">
-                        <form class="weather__search">
-                            <br />&nbsp;
-                        </form>
-                        <div class="weather__units">
-
-                            <span class="weather_unit_celsius"><input type="radio" name="exampleRadios" id="metric" value="metric" checked={units === 'metric'} onClick={unitChange} /><b>Celsius</b></span>&nbsp;&nbsp;
-                            <span class="weather_unit_farenheit"><input type="radio" name="exampleRadios" id="imperial" value="imperial" checked={units === 'imperial'} onClick={unitChange} /><b>Farenheit</b></span>
-                        </div>
-                    </div>
-                    {(typeof data.main != 'undefined') ?
-                        <div class="weather__body">
-                            <h1 class="weather__city"><b> {data.name} , {data.sys.country} </b></h1>
-
-                            <Checkweather units={units}></Checkweather>
-                        </div> :
-                        <div>Loading...</div>
-                    }
-
-
-
-                </div>
-
-                    <div className='col-md-6 '>
-                        <div class="weather__header ">
-                            <form class="weather__search ">
-
+        <div ><NavBar />
+            <div class="header"><b>Weather2Wear Application</b></div>
+            <div class="backimage">
+                <div class="container">
+                    <div class="row"><div className='col-md-5 '>
+                        <div class="weather__header">
+                            <form class="weather__search">
+                                <br />&nbsp;
                             </form>
-
                             <div class="weather__units">
-                                <SearchCities onSearchChange={handleOnSearchChange} />
-                                {currentWeather && (
 
-
-                                    <CurrentWeather data={currentWeather} units={units} />
-
-                                )}
-
+                                <span class="weather_unit_celsius"><input type="radio" name="exampleRadios" id="metric" value="metric" checked={units === 'metric'} onClick={unitChange} /><b>Celsius</b></span>&nbsp;&nbsp;
+                                <span class="weather_unit_farenheit"><input type="radio" name="exampleRadios" id="imperial" value="imperial" checked={units === 'imperial'} onClick={unitChange} /><b>Farenheit</b></span>
                             </div>
                         </div>
+                        {(typeof data.main != 'undefined') ?
+                            <div class="weather__body">
+                                <h1 class="weather__city"><b> {data.name} , {data.sys.country} </b></h1>
+
+                                <Checkweather units={units}></Checkweather>
+                            </div> :
+                            <div>Loading...</div>
+                        }
+
 
 
                     </div>
 
-                </div>
-                <div class="row">
-                    <div class="col-md-8"><br /><br />
-                        
-                    </div>
-                </div>
+                        <div className='col-md-6 '>
+                            <div class="weather__header ">
+                                <form class="weather__search ">
 
-            </div></div></div>
+                                </form>
+
+                                <div class="weather__units">
+                                    <SearchCities onSearchChange={handleOnSearchChange} />
+                                    {currentWeather && (
+
+
+                                        <CurrentWeather data={currentWeather} units={units} />
+
+                                    )}
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div><br />
+                    <div class="row">
+
+
+                        <div class="col px-md-5 bg-primary rounded-6"><br /><br />
+
+                            {forecast && <Forecast units={units} />}
+                        </div>
+
+                    </div>
+
+                </div></div></div>
     );
 }
 export default WeatherApp;
