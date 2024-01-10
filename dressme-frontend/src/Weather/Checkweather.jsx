@@ -130,7 +130,8 @@ class Checkweather extends React.Component {
   };
 
   render() {
-    if (this.state.temperatureC) {
+    //alert(this.state.temperatureC);
+    if (this.state.temperatureC != undefined) {
 
       return (
         <React.Fragment>

@@ -17,14 +17,28 @@
     color: #fff;
     padding: 2rem;
     width: 80%;
-    margin: 4rem auto;
+    margin: 0rem auto;
     border-radius: 10px;
 }
 .backimage{
-    background-image: url("../../public/images/Rainy.jpg");
-    width:auto; 
+    background-image: url("../../public/images/Sunny.jpg");
+    width:100%; 
     height: auto; 
     background-attachment: fixed;
+    
+}
+.header{
+    height: 10vh;
+    background-color: blue;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    position: sticky;
+    top:0;
+    border-bottom: 5px solid white;
+    border-top: 5px solid white;
 }
 .weather__header {
     display: flex;

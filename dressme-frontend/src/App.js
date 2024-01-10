@@ -34,6 +34,7 @@ import NavBar from './components/NavBar';
 
 
 
+
 function App() {
   
   return (
@@ -63,6 +64,8 @@ function App() {
           <Route path='/Cweather' element={<Cweather />}></Route>
           <Route path='/Checkweather' element={<Checkweather />}></Route>
           <Route path='/Sample' element={<Sample/>}></Route>
+         
+          
         </Routes>
       </BrowserRouter>
       

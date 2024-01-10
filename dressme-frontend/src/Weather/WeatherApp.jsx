@@ -8,6 +8,7 @@ import SearchCities from './SearchCities';
 import CurrentWeather from './CurrentWeather';
 import Forecast from './Forecast';
 import Checkweather from './Checkweather';
+import NavBar from "../components/NavBar";
 
 
 const WeatherApp = () => {
@@ -93,6 +94,8 @@ const WeatherApp = () => {
     }
 
     return (
+        <div ><NavBar/>
+        <div class="header"><b>Weather2Wear Application</b></div>
         <div class="backimage">
             <div class="container">
                 <div class="row"><div className='col-md-5 '>
@@ -147,7 +150,7 @@ const WeatherApp = () => {
                     </div>
                 </div>
 
-            </div></div>
+            </div></div></div>
     );
 }
 export default WeatherApp;

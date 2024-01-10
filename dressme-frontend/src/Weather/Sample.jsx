@@ -29,7 +29,7 @@ const Sample = () => {
                 setLong(position.coords.longitude);
             });
 
-            await fetch(`https://api.openweathermap.org/data/2.5//weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=${units}`)
+            await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=${units}`)
                 .then(res => res.json())
                 .then(result => {
                     setData(result)
@@ -67,16 +67,19 @@ const Sample = () => {
         const [lat, lon] = searchData.value.split(" ");
 
         const currentWeatherFetch = fetch(
-            `https://api.openweathermap.org/data/2.5//weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
         );
         const forecastFetch = fetch(
-            `https://api.openweathermap.org/data/2.5//forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
+           // `https://api.openweathermap.org/data/2.5//forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`
+            `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${lat}&lon=${lon}&appid=${API_KEY}`
         );
 
         Promise.all([currentWeatherFetch, forecastFetch])
             .then(async (response) => {
                 const weatherResponse = await response[0].json();
                 const forcastResponse = await response[1].json();
+
+                console.log("forecast"+forcastResponse);
 
                 setCurrentWeather({ city: searchData.label, ...weatherResponse });
                 setForecast({ city: searchData.label, ...forcastResponse });
@@ -94,6 +97,8 @@ const Sample = () => {
     }
 
     return (
+        <div >
+        <div class="header"><b>Weather2Wear Application</b></div>
         <div class="backimage">
             <div class="container">
                 <div class="row"><div className='col-md-5 '>
@@ -143,12 +148,13 @@ const Sample = () => {
 
                 </div>
                 <div class="row">
-                    <div class="col-md-8"><br /><br />
+                    {/* <div class="col-md-8"><br /><br />
                         Forecast
-                    </div>
+                        {forecast && <Forecast data={forecast} />}
+                    </div> */}
                 </div>
 
-            </div></div>
+            </div></div></div>
     );
 }
 export default Sample;
