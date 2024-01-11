@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Components/Header";
-import NavBar from "../Components/NavBar";
+import Header from "../components/Header";
+import NavBar from "../components/NavBar";
 
 export default function MyCloset(){
     return(

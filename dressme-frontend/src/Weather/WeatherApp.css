@@ -1,84 +1,169 @@
-/* WeatherApp.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-/* Styles for the main container */
-.weather-app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Styles for the search box */
-  .search-box {
-    margin-bottom: 20px;
-  }
-  
-  .search-bar {
-    padding: 10px;
-    width: 300px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-  }
-  
-  .search-bar:focus {
-    outline: none;
-  }
-  
-  /* Styles for weather details */
-  .weather-details {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .weather {
-    display: flex;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    background: #eaebee;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.2)
+    );
+    color: #fff;
+    padding: 2rem;
+    width: 80%;
+    margin: 0rem auto;
+    border-radius: 10px;
+}
+.backimage{
+    background-image: url("../../public/images/Sunny.jpg");
+    width:100%; 
+    height: auto; 
+    background-attachment: fixed;
+    
+}
+.header{
+    height: 10vh;
+    background-color: blue;
+    display:flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
-  }
-  
-  .weather img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-  }
-  
-  .temperature {
+    font-size: 2rem;
+    color: white;
+    position: sticky;
+    top:0;
+    border-bottom: 5px solid white;
+    border-top: 5px solid white;
+}
+.weather__header {
     display: flex;
-    justify-content: space-around;
-  }
-  
-  /* Styles for the forecast section */
-  .forecast {
-    text-align: center;
-  }
-  
-  .forecast h3 {
-    margin-bottom: 10px;
-  }
-  
-  .forecast-details {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .forecast-item {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    
+}
+
+input {
+    border: none;
+    background: #1e1e1e;
+    outline: none;
+    color: #fff;
+    padding: 0.5rem 2.5rem;
     border-radius: 5px;
-    background-color: #f0f0f0;
-  }
-  
-  .forecast-item p {
-    margin: 5px 0;
-  }
-  
-  .forecast-item img {
-    width: 40px;
-    height: 40px;
-  }
-  
+}
+
+input::placeholder {
+    color: #fff;
+}
+
+.weather__search {
+    position: relative;
+}
+
+.weather__search i {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 15px;
+    color: #fff;
+}
+
+.weather__units {
+    font-size: 1.0rem;
+}
+
+.weather__units span {
+    cursor: pointer;
+}
+
+.weather__units span:first-child {
+    margin-right: 0.5rem;
+}
+
+.weather__body {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.weather__datetime {
+    margin-bottom: 2rem;
+    font-size: 14px;
+}
+
+.weather__forecast {
+    background: #2eae39;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+}
+
+.weather__icon img {
+    width: 100px;
+}
+
+.weather__temperature {
+    font-size: 1.75rem;
+}
+
+.weather__minmax {
+    display: flex;
+    justify-content: center;
+}
+
+.weather__minmax p {
+    font-size: 14px;
+    margin: 0.5rem;
+}
+
+.weather__info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin-top: 3rem;
+}
+
+.weather__card {
+    display: flex;
+    align-items: center;
+    background: #0a3ad8fc;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.weather__card i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.weather__card p {
+    font-size: 14px;
+}
+
+.searchdisplay{
+    display:none;
+}
+@media(max-width: 936px){
+    .container {
+        width: 90%;
+    }
+
+    .weather__header {
+        flex-direction: column;
+    }
+
+    .weather__units {
+        margin-top: 1rem;
+    }
+}
+
+
+
+@media(max-width: 400px){
+    .weather__info {
+        grid-template-columns: none;
+    }
+}
