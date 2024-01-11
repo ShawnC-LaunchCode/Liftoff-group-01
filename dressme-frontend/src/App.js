@@ -14,7 +14,7 @@ import Searchfilter from './cloth/Searchfilter';
 import WeatherApp from './Weather/WeatherApp';
 import SearchCities from './Weather/SearchCities';
 
-//import Userhomepage from './Pages/Userhomepage';
+
 import Login from './Pages/Login.js';
 import Register from './Pages/Register.js';
 

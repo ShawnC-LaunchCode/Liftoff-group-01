@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Dressme.iml" filepath="$PROJECT_DIR$/.idea/Dressme.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dressme-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/dressme-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dressme-backend.main.iml" filepath="$PROJECT_DIR$/.idea/modules/dressme-backend.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dressme-backend.test.iml" filepath="$PROJECT_DIR$/.idea/modules/dressme-backend.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/weather2wear.iml" filepath="$PROJECT_DIR$/.idea/weather2wear.iml" />
     </modules>
   </component>
 </project>
