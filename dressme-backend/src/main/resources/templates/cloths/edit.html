@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/cloths/edit}">
+    <div class="form-group">
+        <label>Gender
+            <select th:field="${cloth.gender}">
+                <option th:each="genders : ${gender}"
+                        th:value="${genders}"
+                        th:text="${genders.genderName}"
+                        th:selected="${genders.genderName == editGender}"
+                ></option>
+            </select><input type="hidden" th:value="${cloth.id}" name="clothId" />
+            <!--            <p class="error" th:errors="${genders.genderName}"></p>-->
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Category
+            <select th:field="${cloth.clothCategory}">
+                <option th:each="clothCategory : ${categories}"
+                        th:value="${clothCategory.id}"
+                        th:text="${clothCategory.name}"
+                        th:selected="${clothCategory.name == editCategory}"
+                ></option></select>
+            <!--            <a th:href="@{'/clothCategories/create'}">Add Category</a>-->
+            <p class="error" th:errors="${cloth.clothCategory}"></p>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Name
+            <input th:field="${cloth.name}" class="form-control" >
+        </label>
+        <p class="error" th:errors="${cloth.name}"></p>
+    </div>
+    <div class="form-group">
+        <label>Weather/Season Tag
+            <select th:field="${cloth.weatherTag}">
+                <option th:each="weathers : ${weather}"
+                        th:value="${weathers}"
+                        th:text="${weathers.weatherName}"
+                        th:selected="${weathers.weatherName == editWeather}"
+                ></option>
+            </select>
+            <!--            <p class="error" th:errors="${genders.genderName}"></p>-->
+        </label>
+    </div>
+    <div class="form-group">
+        <label>Image Url
+            <input th:field="${cloth.imageUrl}" class="form-control" >
+        </label>
+        <p class="error" th:errors="${cloth.imageUrl}"></p>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-success">
+    </div>
+</form>
+
+</body>
+</html>

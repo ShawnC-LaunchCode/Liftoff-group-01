@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Category Name</th>
+    </tr>
+    </thead>
+    <tr th:each="category : ${categories}">
+        <td><a th:text="${category.name}" th:href="'/cloths?categoryId=' + ${category.id}"></a></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
