@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @CrossOrigin(maxAge=3600)
 @RestController
-@RequestMapping
+@RequestMapping("register")
 public class AuthenticationController {
 
     @Autowired
@@ -85,14 +85,14 @@ public class AuthenticationController {
         return "redirect:";
     }
 
-    @GetMapping("/login")
+    @RequestMapping("login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {

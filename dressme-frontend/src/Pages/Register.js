@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function Register() {
 
+
   const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -30,7 +31,17 @@ function Register() {
  
     // Handling the form submission
     const handleSubmit = (e) => {
+       
         e.preventDefault();
+        const edata= email;
+        const pdata= password;
+
+        fetch("http://localhost:8080/clothCategories/create",{
+        method:"POST",
+        headers:{"content-type":"application/json"},
+        body:JSON.stringify(edata, pdata)
+      });
+
         if (name === "" || email === "" || password === "") {
             setError(true);
         } else {
