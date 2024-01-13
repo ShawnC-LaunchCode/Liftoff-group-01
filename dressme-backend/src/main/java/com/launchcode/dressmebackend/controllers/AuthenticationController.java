@@ -85,21 +85,21 @@ public class AuthenticationController {
         return "redirect:";
     }
 
-    @RequestMapping("login")
+    @GetMapping("Login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
-        return "login";
+        return "Login";
     }
 
-    @PostMapping("login")
+    @PostMapping("Login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Log In");
-            return "login";
+            return "Login";
         }
 
         User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
@@ -107,7 +107,7 @@ public class AuthenticationController {
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
             model.addAttribute("title", "Log In");
-            return "login";
+            return "Login";
         }
 
         String password = loginFormDTO.getPassword();
@@ -115,12 +115,12 @@ public class AuthenticationController {
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
             model.addAttribute("title", "Log In");
-            return "login";
+            return "Login";
         }
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        return "redirect: Userpage";
     }
 
     @GetMapping("/logout")

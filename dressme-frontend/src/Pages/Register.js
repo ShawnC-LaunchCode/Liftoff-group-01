@@ -35,11 +35,12 @@ function Register() {
         e.preventDefault();
         const edata= email;
         const pdata= password;
+        const ndata= name;
 
-        fetch("http://localhost:8080/clothCategories/create",{
+        fetch("http://localhost:8080/Register",{
         method:"POST",
         headers:{"content-type":"application/json"},
-        body:JSON.stringify(edata, pdata)
+        body:JSON.stringify(edata, pdata, ndata)
       });
 
         if (name === "" || email === "" || password === "") {
