@@ -16,9 +16,9 @@ import com.launchcode.dressmebackend.models.dto.RegisterFormDTO;
 
 import java.util.Optional;
 
-@CrossOrigin(maxAge=3600)
+@CrossOrigin(origins= "http://localhost:3000", allowCredentials = "true", maxAge=3600)
 @RestController
-@RequestMapping("register")
+@RequestMapping("/Register")
 public class AuthenticationController {
 
     @Autowired
@@ -45,21 +45,21 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping("/register")
+    @GetMapping("/Register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
-        return "register";
+        return "Register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/Register")
     public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Register");
-            return "register";
+            return "Register";
         }
 
         User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
@@ -67,7 +67,7 @@ public class AuthenticationController {
         if (existingUser != null) {
             errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
             model.addAttribute("title", "Register");
-            return "register";
+            return "Register";
         }
 
         String password = registerFormDTO.getPassword();
@@ -75,7 +75,7 @@ public class AuthenticationController {
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             model.addAttribute("title", "Register");
-            return "register";
+            return "Register";
         }
 
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());

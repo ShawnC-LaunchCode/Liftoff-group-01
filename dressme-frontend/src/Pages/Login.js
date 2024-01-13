@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
+
 function Login() {
 
-  
+  const navigate=useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +34,7 @@ function Login() {
       headers:{"content-type":"application/json"},
       body:JSON.stringify(edata, pdata)
     }).then((res)=>{
-      navigate('/cloths');
+      navigate('/Homepage');
     })
 
     
@@ -47,8 +48,8 @@ function Login() {
   <div>
   
   <form  method="post">
-      <label>Email <input type="email" name="emailAddress" required/></label>
-      <br/><label>Password <input type="text" name="password" required/></label>
+      <label>Email <input type="email" name="emailAddress"  value={email} onChange={handleEmail} required/></label>
+      <br/><label>Password <input type="text" name="password"  value={password} onchange={handlePassword} required/></label>
       <br/><button id="loginButton" type="submit" onClick={handleSubmit}>Log In</button>
   </form>
   </div>
