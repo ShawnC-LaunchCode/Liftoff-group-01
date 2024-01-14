@@ -16,17 +16,25 @@ public class User extends UserAbstractEntity{
     @NotNull
     private String pwHash;
 
+    @NotNull
+private String email;
+
     public User(){}
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User(String name, String password){
+    public User(String name, String password, String email){
         this.name=name;
+        this.email=email;
         this.pwHash=encoder.encode(password);
     }
 
     public String getUsername(){
         return name;
+    }
+
+    public String getEmail(){
+        return email;
     }
 
     public boolean isMatchingPassword(String password) {

@@ -5,64 +5,58 @@ import { Link, useNavigate } from "react-router-dom";
 function Register() {
 
 const navigate= useNavigate();
-  const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
 
-    const [submitted, setSubmitted] = useState(false);
-    const [error, setError] = useState(false);
-    //const [emailError, setEmailError]= useState(false);
+const [status, setStatus] = useState(null);
+    
+ 
  
     // Handling the name change
     const handleName = (e) => {
         setName(e.target.value);
-        setSubmitted(false);
+        setStatus(null);
     };
  
     // Handling the email change
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        setSubmitted(false);
+        setStatus(null);
     };
  
     // Handling the password change
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setSubmitted(false);
+        setStatus(null);
     };
  
     // Handling the form submission
-    const handleSubmit = (e) => {
-       
-        e.preventDefault();
-        const edata= email;
-        const pdata= password;
-        const ndata= name;
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Submit button clicked!")
+    const formData= {email, password, name};
 
-        fetch("http://localhost:8080/Register",{
-        method:"POST",
-        headers:{"content-type":"application/json"},
-        body:JSON.stringify(edata, pdata, ndata)
-      }).then((res)=>{
+    try{const response = await fetch("http://localhost:8080/Register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        console.error("Server returned an error:", response.status, response.statusText);
+        // Handle the error accordingly
+      } else {
+        // Registration successful
+        setStatus("success");
+        navigate("/Login");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      // Handle the error accordingly
+    }
+  };
     
-        navigate('/Login');
-      })
-//add in additional validation
-        if (name === "" || email === "" || password === "") {
-            setError(true);
-            //setEmailError(false);
-        }
-        // }else if(user.getEmail != null){
-        //     setSubmitted(false);
-        //     setError(true);
-        //     setEmailError(true);
-        // }
-        else {
-            setSubmitted(true);
-            setError(false);
-            //setEmailError(false);
-        }
-    };
  
     // Showing success message
     const successMessage = () => {
@@ -70,10 +64,10 @@ const navigate= useNavigate();
             <div
                 className="success"
                 style={{
-                    display: submitted ? "" : "none",
+                    display: status ==="success" ? "" : "none",
                 }}
             >
-                <h1>User {name} successfully registered!!</h1>
+                <h1>User {name} successfully registered!</h1>
             </div>
         );
     };
@@ -84,7 +78,7 @@ const navigate= useNavigate();
             <div
                 className="error"
                 style={{
-                    display: error ? "" : "none",
+                    display: status === "error" ? "" : "none",
                 }}
             >
                 <h1>Please complete all registration fields. </h1>
@@ -92,19 +86,6 @@ const navigate= useNavigate();
         );
     };
 
-    // const emailErrorMessage = () => {
-    //     return (
-    //         <div
-    //             className="emailError"
-    //             style={{
-    //                 display: emailError? "" : "none",
-    //             }}
-    //         >
-    //             <h1>A user with that email already exists, Registration Failed.</h1>
-    //         </div>
-    //     );
-    // };
- 
     return (
         <div className="form">
             <div>

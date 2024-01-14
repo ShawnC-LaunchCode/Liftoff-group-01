@@ -16,6 +16,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import com.launchcode.dressmebackend.models.dto.LoginFormDTO;
 import com.launchcode.dressmebackend.models.dto.RegisterFormDTO;
+import com.launchcode.dressmebackend.exception.ErrorResponse;
+
 
 import java.util.Optional;
 
@@ -49,17 +51,18 @@ public class AuthenticationController {
     }
 
     @PostMapping("/Register")
-    public ResponseEntity<String> processRegistrationForm(@RequestBody RegisterFormDTO registerFormDTO, HttpServletRequest request) {
+    public ResponseEntity<Object> processRegistrationForm(@RequestBody RegisterFormDTO registerFormDTO, HttpServletRequest request) {
+        System.out.println("Received registration requestion: "+ registerFormDTO);
 
 //        if (errors.hasErrors()) {
 //               model.addAttribute("title", "Register");
 //            return "Register";
 //        }
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getName());
+        User existingUser = userRepository.findByName(registerFormDTO.getName());
 
         if (existingUser != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A user with that name already exists");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("A user with that name already exists"));
             //errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
             //model.addAttribute("title", "Register");
             //return "Register";
@@ -82,7 +85,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("Login")
-    public ResponseEntity <String> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO,
+    public ResponseEntity <Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
@@ -91,12 +94,11 @@ public class AuthenticationController {
 //            return "Login";
 //        }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getName());
+        User theUser = userRepository.findByName(loginFormDTO.getName());
 
         if (theUser == null) {
-            errors.rejectValue("username", "user.invalid", "The given username does not exist");
-            model.addAttribute("title", "Log In");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Credentials, Login Failed");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            .body(new ErrorResponse("The given username does not exist"));
         }
 
         String password = loginFormDTO.getPassword();
@@ -108,7 +110,6 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
-
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("User Logged in successfully");
     }
 
