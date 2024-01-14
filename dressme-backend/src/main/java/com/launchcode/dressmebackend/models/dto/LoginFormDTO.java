@@ -25,6 +25,7 @@ public class LoginFormDTO {
         this.name = name;
     }
 
+
     public String getPassword() {
         return password;
     }

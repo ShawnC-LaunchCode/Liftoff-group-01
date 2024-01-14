@@ -3,23 +3,32 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate=useNavigate();
-  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState(null); 
+
+  const handleEmailChange= (e) => {
+    setEmail(e.target.value);
+    setStatus(null);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setStatus(null);
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = { name, password };
+    const formData = { email, password };
 
     try {
       const response = await fetch('http://localhost:8080/Login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      }).then((res)=>{
-              navigate('/Homepage');
-           });
+      });
 
       if (!response.ok) {
         console.error('Server returned an error:', response.status, response.statusText);
@@ -28,6 +37,7 @@ function Login() {
       } else {
         // Login successful
         setStatus('success');
+        navigate("/Homepage")
         // Redirect or perform additional actions on successful login
       }
     } catch (error) {
@@ -50,11 +60,11 @@ function Login() {
 
       <form>
         {/* Labels and inputs for form data */}
-        <label className="label">Name</label>
+        <label className="userEmail">Email</label>
         <input
-          onChange={(e) => setName(e.target.value)}
+          onChange={handleEmailChange}
           className="input"
-          value={name}
+          value={email}
           type="text"
         />
 

@@ -10,9 +10,12 @@ import jakarta.servlet.http.HttpSession;
 import com.launchcode.dressmebackend.controllers.RegistrationController;
 import com.launchcode.dressmebackend.data.UserRepository;
 import com.launchcode.dressmebackend.models.User;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -45,9 +48,9 @@ public class LoginController {
     }
 
     @PostMapping("/Login")
-    public ResponseEntity<Object> processLoginForm(@RequestBody LoginFormDTO loginFormDTO,
-                                                   HttpServletRequest request) {
-        User theUser = userRepository.findByName(loginFormDTO.getName());
+    public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
+                                                   HttpServletRequest request, Model model) {
+        User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
 
         if (theUser == null || !theUser.isMatchingPassword(loginFormDTO.getPassword())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
