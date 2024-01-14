@@ -4,10 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const UserRegistration = () => {
+    const navigate= useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [userExists, setUserExists] = useState(false);
+  const [status, setStatus]= useState(null);
+  
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -23,37 +27,48 @@ const UserRegistration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Simple front-end validation
-    if (!name || !email || !password) {
-      setError("Please fill in all fields");
-      return;
-    }
-
-    // Clear any previous errors
-    setError("");
-
-    const formData = { name, email, password };
+    const formData = { email, password, name };
 
     try {
-      const response = await fetch("http://localhost:8080/Register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+        const response = await fetch("http://localhost:8080/Register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
 
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        setError(`Server error: ${errorMessage}`);
-        return;
-      }
-
-      // Registration successful
-      console.log("User registered successfully");
+        if (!response.ok) {
+            const responseData = await response.json();
+            if (responseData.message && responseData.message.includes("already exists")) {
+                setUserExists(true);
+            } else {
+                console.error("Server returned an error:", response.status, response.statusText);
+                // Handle other errors accordingly
+            }
+        } else {
+            // Registration successful
+            setStatus("success");
+            navigate("/Login");
+        }
     } catch (error) {
-      setError(`Error during registration: ${error.message}`);
+        console.error("Error during registration:", error);
+        // Handle other errors accordingly
     }
-  };
+};
+
+// Showing error message if error is true
+const errorMessage = () => {
+    return (
+        <div
+            className="error"
+            style={{
+                display: (status === "error" || userExists) ? "" : "none",
+            }}
+        >
+            {userExists ? <h1>User with the same name already exists. Please choose a different name.</h1> : <h1>Please complete all registration fields.</h1>}
+        </div>
+    );
+};
+
 
   return (
     <div>
