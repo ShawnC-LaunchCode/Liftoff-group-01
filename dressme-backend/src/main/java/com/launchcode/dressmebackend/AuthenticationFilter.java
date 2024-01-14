@@ -1,5 +1,6 @@
 package com.launchcode.dressmebackend;
 
+import com.launchcode.dressmebackend.controllers.LoginController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -44,7 +45,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
         }
 // create sessions in login form, not at registration
         HttpSession session = request.getSession();
-        User user = registrationController.getUserFromSession(session);
+        User user = LoginController.getUserFromSession(session);
 
         // The user is logged in
         if (user != null) {
