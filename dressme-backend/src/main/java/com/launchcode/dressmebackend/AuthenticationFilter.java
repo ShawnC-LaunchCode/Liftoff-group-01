@@ -3,7 +3,7 @@ package com.launchcode.dressmebackend;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import com.launchcode.dressmebackend.controllers.AuthenticationController;
+import com.launchcode.dressmebackend.controllers.RegistrationController;
 import com.launchcode.dressmebackend.data.UserRepository;
 import com.launchcode.dressmebackend.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
     UserRepository userRepository;
 
     @Autowired
-    AuthenticationController authenticationController;
+    RegistrationController registrationController;
 
     private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css");
 
@@ -42,9 +42,9 @@ public class AuthenticationFilter implements HandlerInterceptor {
             // returning true indicates that the request may proceed
             return true;
         }
-
+// create sessions in login form, not at registration
         HttpSession session = request.getSession();
-        User user = authenticationController.getUserFromSession(session);
+        User user = registrationController.getUserFromSession(session);
 
         // The user is logged in
         if (user != null) {

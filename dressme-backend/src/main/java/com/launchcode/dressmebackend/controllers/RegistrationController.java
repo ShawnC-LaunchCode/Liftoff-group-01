@@ -26,20 +26,20 @@ public class RegistrationController {
     private UserRepository userRepository;
 
     @PostMapping
-    public ResponseEntity<String> registerUser(@RequestBody UserRegistrationDTO registrationDTO) {
+    public ResponseEntity<String> registerUser(@RequestBody RegisterFormDTO registerFormDTO) {
         try {
             // Simple validation
-            if (registrationDTO.getName() == null || registrationDTO.getEmail() == null || registrationDTO.getPassword() == null) {
+            if (registerFormDTO.getName() == null || registerFormDTO.getEmail() == null || registerFormDTO.getPassword() == null) {
                 return ResponseEntity.badRequest().body("Please provide all registration fields");
             }
 
             // Check if the user with the given name already exists
-            if (userRepository.findByName(registrationDTO.getName()) != null) {
+            if (userRepository.findByName(registerFormDTO.getName()) != null) {
                 return ResponseEntity.badRequest().body("A user with that name already exists");
             }
 
             // Create a new user and save to the database
-            User newUser = new User(registrationDTO.getName(), registrationDTO.getPassword(), registrationDTO.getEmail());
+            User newUser = new User(registerFormDTO.getName(), registerFormDTO.getPassword(), registerFormDTO.getEmail());
             userRepository.save(newUser);
 
             return ResponseEntity.ok("User registered successfully");

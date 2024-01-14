@@ -1,5 +1,9 @@
 package com.launchcode.dressmebackend.models.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class RegisterFormDTO {
 
     @NotNull
