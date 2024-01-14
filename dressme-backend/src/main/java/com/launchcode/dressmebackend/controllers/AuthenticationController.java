@@ -73,7 +73,7 @@ public class AuthenticationController {
         //return "Register";
         //}
 
-        User newUser = new User(registerFormDTO.getName(), registerFormDTO.getPassword()); //update to also include a firstName or name field here and in the DTO(s) and model
+        User newUser = new User(registerFormDTO.getName(), registerFormDTO.getPassword(), registerFormDTO.getEmail()); //update to also include a firstName or name field here and in the DTO(s) and model
         userRepository.save(newUser);
         //setUserInSession(request.getSession(), newUser); //decide if assigning a session here makes sense or if you want to assign ewhen they login
         return ResponseEntity.status(HttpStatus.CREATED).body("User was registered");

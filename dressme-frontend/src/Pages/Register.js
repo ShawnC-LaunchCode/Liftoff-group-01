@@ -11,6 +11,7 @@ const navigate= useNavigate();
 
     const [submitted, setSubmitted] = useState(false);
     const [error, setError] = useState(false);
+    //const [emailError, setEmailError]= useState(false);
  
     // Handling the name change
     const handleName = (e) => {
@@ -49,9 +50,17 @@ const navigate= useNavigate();
 //add in additional validation
         if (name === "" || email === "" || password === "") {
             setError(true);
-        } else {
+            //setEmailError(false);
+        }
+        // }else if(user.getEmail != null){
+        //     setSubmitted(false);
+        //     setError(true);
+        //     setEmailError(true);
+        // }
+        else {
             setSubmitted(true);
             setError(false);
+            //setEmailError(false);
         }
     };
  
@@ -78,10 +87,23 @@ const navigate= useNavigate();
                     display: error ? "" : "none",
                 }}
             >
-                <h1>Please enter all the fields</h1>
+                <h1>Please complete all registration fields. </h1>
             </div>
         );
     };
+
+    // const emailErrorMessage = () => {
+    //     return (
+    //         <div
+    //             className="emailError"
+    //             style={{
+    //                 display: emailError? "" : "none",
+    //             }}
+    //         >
+    //             <h1>A user with that email already exists, Registration Failed.</h1>
+    //         </div>
+    //     );
+    // };
  
     return (
         <div className="form">
@@ -92,6 +114,7 @@ const navigate= useNavigate();
             {/* Calling to the methods */}
             <div className="messages">
                 {errorMessage()}
+                {/*{emailErrorMessage()}*/}
                 {successMessage()}
             </div>
  
