@@ -125,7 +125,7 @@ const [status, setStatus] = useState(null);
                     type="password"
                 />
  
-                <button onClick={handleSubmit} className="btn" type="submit">
+                <button onClick={handleSubmit} className="btn" type="button">
                     Submit
                 </button>
             </form>
