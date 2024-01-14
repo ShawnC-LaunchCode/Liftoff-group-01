@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
 
-const navigate= useNavigate;
+const navigate= useNavigate();
   const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -43,10 +43,10 @@ const navigate= useNavigate;
         headers:{"content-type":"application/json"},
         body:JSON.stringify(edata, pdata, ndata)
       }).then((res)=>{
-        
+    
         navigate('/Login');
       })
-
+//add in additional validation
         if (name === "" || email === "" || password === "") {
             setError(true);
         } else {

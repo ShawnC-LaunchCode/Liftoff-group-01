@@ -49,7 +49,7 @@ function Login() {
   
   <form  method="post">
       <label>Email <input type="email" name="emailAddress"  value={email} onChange={handleEmail} required/></label>
-      <br/><label>Password <input type="text" name="password"  value={password} onchange={handlePassword} required/></label>
+      <br/><label>Password <input type="text" name="password"  onchange={handlePassword} required/></label>
       <br/><button id="loginButton" type="submit" onClick={handleSubmit}>Log In</button>
   </form>
   </div>

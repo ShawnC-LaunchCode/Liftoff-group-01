@@ -6,7 +6,10 @@ import com.launchcode.dressmebackend.models.dto.RegisterFormDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -45,69 +48,55 @@ public class AuthenticationController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @GetMapping("/Register")
-    public String displayRegistrationForm(Model model) {
-        model.addAttribute(new RegisterFormDTO());
-        model.addAttribute("title", "Register");
-        return "Register";
-    }
-
     @PostMapping("/Register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
-                                          Errors errors, HttpServletRequest request,
-                                          Model model) {
+    public ResponseEntity<String> processRegistrationForm(@RequestBody RegisterFormDTO registerFormDTO, HttpServletRequest request) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
-            return "Register";
-        }
+//        if (errors.hasErrors()) {
+//               model.addAttribute("title", "Register");
+//            return "Register";
+//        }
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        User existingUser = userRepository.findByUsername(registerFormDTO.getName());
 
         if (existingUser != null) {
-            errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
-            model.addAttribute("title", "Register");
-            return "Register";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A user with that name already exists");
+            //errors.rejectValue("username", "username.alreadyexists", "A user with that username already exists");
+            //model.addAttribute("title", "Register");
+            //return "Register";
         }
 
         String password = registerFormDTO.getPassword();
-        String verifyPassword = registerFormDTO.getVerifyPassword();
-        if (!password.equals(verifyPassword)) {
-            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            model.addAttribute("title", "Register");
-            return "Register";
-        }
+        //String verifyPassword = registerFormDTO.getVerifyPassword(); //If you handle this on the front end, and do not pass this value, you will not need thsi or this field at all in any of your DTOs
+        //if (!password.equals(verifyPassword)) {
+        // errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+        //model.addAttribute("title", "Register");
+        //return "Register";
+        //}
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        User newUser = new User(registerFormDTO.getName(), registerFormDTO.getPassword()); //update to also include a firstName or name field here and in the DTO(s) and model
         userRepository.save(newUser);
-        setUserInSession(request.getSession(), newUser);
+        //setUserInSession(request.getSession(), newUser); //decide if assigning a session here makes sense or if you want to assign ewhen they login
+        return ResponseEntity.status(HttpStatus.CREATED).body("User was registered");
 
-        return "redirect:";
-    }
 
-    @GetMapping("Login")
-    public String displayLoginForm(Model model) {
-        model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
-        return "Login";
     }
 
     @PostMapping("Login")
-    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
+    public ResponseEntity <String> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Log In");
-            return "Login";
-        }
+//        if (errors.hasErrors()) {
+//            model.addAttribute("title", "Log In");
+//            return "Login";
+//        }
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        User theUser = userRepository.findByUsername(loginFormDTO.getName());
 
         if (theUser == null) {
             errors.rejectValue("username", "user.invalid", "The given username does not exist");
             model.addAttribute("title", "Log In");
-            return "Login";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Credentials, Login Failed");
         }
 
         String password = loginFormDTO.getPassword();
@@ -115,12 +104,12 @@ public class AuthenticationController {
         if (!theUser.isMatchingPassword(password)) {
             errors.rejectValue("password", "password.invalid", "Invalid password");
             model.addAttribute("title", "Log In");
-            return "Login";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Credentials, Login Failed");
         }
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect: Userpage";
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("User Logged in successfully");
     }
 
     @GetMapping("/logout")
