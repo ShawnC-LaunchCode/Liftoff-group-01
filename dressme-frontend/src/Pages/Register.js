@@ -2,136 +2,217 @@ import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function Register() {
 
-const navigate= useNavigate();
-const [name, setName] = useState("");
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
+const UserRegistration = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-const [status, setStatus] = useState(null);
-    
- 
- 
-    // Handling the name change
-    const handleName = (e) => {
-        setName(e.target.value);
-        setStatus(null);
-    };
- 
-    // Handling the email change
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-        setStatus(null);
-    };
- 
-    // Handling the password change
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-        setStatus(null);
-    };
- 
-    // Handling the form submission
-    const handleSubmit = async (e) => {
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit button clicked!")
-    const formData= {email, password, name};
 
-    try{const response = await fetch("http://localhost:8080/Register", {
+    // Simple front-end validation
+    if (!name || !email || !password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    // Clear any previous errors
+    setError("");
+
+    const formData = { name, email, password };
+
+    try {
+      const response = await fetch("http://localhost:8080/Register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        console.error("Server returned an error:", response.status, response.statusText);
-        // Handle the error accordingly
-      } else {
-        // Registration successful
-        setStatus("success");
-        navigate("/Login");
+        const errorMessage = await response.text();
+        setError(`Server error: ${errorMessage}`);
+        return;
       }
+
+      // Registration successful
+      console.log("User registered successfully");
     } catch (error) {
-      console.error("Error during registration:", error);
-      // Handle the error accordingly
+      setError(`Error during registration: ${error.message}`);
     }
   };
+
+  return (
+    <div>
+      <h2>User Registration</h2>
+      {error && <div style={{ color: "red" }}>{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={handleNameChange} />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={handlePasswordChange} />
+        </label>
+        <br />
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  );
+};
+
+export default UserRegistration;
+
+
+// function Register() {
+
+// const navigate= useNavigate();
+// const [name, setName] = useState("");
+// const [email, setEmail] = useState("");
+// const [password, setPassword] = useState("");
+
+// const [status, setStatus] = useState(null);
     
  
-    // Showing success message
-    const successMessage = () => {
-        return (
-            <div
-                className="success"
-                style={{
-                    display: status ==="success" ? "" : "none",
-                }}
-            >
-                <h1>User {name} successfully registered!</h1>
-            </div>
-        );
-    };
  
-    // Showing error message if error is true
-    const errorMessage = () => {
-        return (
-            <div
-                className="error"
-                style={{
-                    display: status === "error" ? "" : "none",
-                }}
-            >
-                <h1>Please complete all registration fields. </h1>
-            </div>
-        );
-    };
+//     // Handling the name change
+//     const handleName = (e) => {
+//         setName(e.target.value);
+//         setStatus(null);
+//     };
+ 
+//     // Handling the email change
+//     const handleEmail = (e) => {
+//         setEmail(e.target.value);
+//         setStatus(null);
+//     };
+ 
+//     // Handling the password change
+//     const handlePassword = (e) => {
+//         setPassword(e.target.value);
+//         setStatus(null);
+//     };
+ 
+//     // Handling the form submission
+//     const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     console.log("Submit button clicked!")
+//     const formData= {email, password, name};
 
-    return (
-        <div className="form">
-            <div>
-                <h1>User Registration</h1>
-            </div>
+//     try{const response = await fetch("http://localhost:8080/Register", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(formData),
+//       });
+
+//       if (!response.ok) {
+//         console.error("Server returned an error:", response.status, response.statusText);
+//         // Handle the error accordingly
+//       } else {
+//         // Registration successful
+//         setStatus("success");
+//         navigate("/Login");
+//       }
+//     } catch (error) {
+//       console.error("Error during registration:", error);
+//       // Handle the error accordingly
+//     }
+//   };
+    
  
-            {/* Calling to the methods */}
-            <div className="messages">
-                {errorMessage()}
-                {/*{emailErrorMessage()}*/}
-                {successMessage()}
-            </div>
+//     // Showing success message
+//     const successMessage = () => {
+//         return (
+//             <div
+//                 className="success"
+//                 style={{
+//                     display: status ==="success" ? "" : "none",
+//                 }}
+//             >
+//                 <h1>User {name} successfully registered!</h1>
+//             </div>
+//         );
+//     };
  
-            <form>
-                {/* Labels and inputs for form data */}
-                <label className="label">Name</label>
-                <input
-                    onChange={handleName}
-                    className="input"
-                    value={name}
-                    type="text"
-                />
+//     // Showing error message if error is true
+//     const errorMessage = () => {
+//         return (
+//             <div
+//                 className="error"
+//                 style={{
+//                     display: status === "error" ? "" : "none",
+//                 }}
+//             >
+//                 <h1>Please complete all registration fields. </h1>
+//             </div>
+//         );
+//     };
+
+//     return (
+//         <div className="form">
+//             <div>
+//                 <h1>User Registration</h1>
+//             </div>
  
-                <label className="label">Email</label>
-                <input
-                    onChange={handleEmail}
-                    className="input"
-                    value={email}
-                    type="email"
-                />
+//             {/* Calling to the methods */}
+//             <div className="messages">
+//                 {errorMessage()}
+//                 {successMessage()}
+//             </div>
  
-                <label className="label">Password</label>
-                <input
-                    onChange={handlePassword}
-                    className="input"
-                    value={password}
-                    type="password"
-                />
+//             <form>
+//                 {/* Labels and inputs for form data */}
+//                 <label className="label">Name</label>
+//                 <input
+//                     onChange={handleName}
+//                     className="input"
+//                     value={name}
+//                     type="text"
+//                 />
  
-                <button onClick={handleSubmit} className="btn" type="button">
-                    Submit
-                </button>
-            </form>
-        </div>
-    );
+//                 <label className="label">Email</label>
+//                 <input
+//                     onChange={handleEmail}
+//                     className="input"
+//                     value={email}
+//                     type="email"
+//                 />
+ 
+//                 <label className="label">Password</label>
+//                 <input
+//                     onChange={handlePassword}
+//                     className="input"
+//                     value={password}
+//                     type="password"
+//                 />
+ 
+//                 <button onClick={handleSubmit} className="btn" type="button">
+//                     Submit
+//                 </button>
+//             </form>
+//         </div>
+//     );
    
-  }
+ // }
   
-  export default Register;
+  //export default Register;

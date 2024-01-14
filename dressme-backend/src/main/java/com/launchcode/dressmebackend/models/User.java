@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//I can make user class extend AbstractEntity after merge
-//TODO: I believe once I extend abstractEntity, the error about user.getId will go away.
 
 @Entity
 public class User extends UserAbstractEntity{
@@ -17,7 +15,7 @@ public class User extends UserAbstractEntity{
     private String pwHash;
 
     @NotNull
-private String email;
+    private String email; 
 
     public User(){}
 
@@ -29,7 +27,7 @@ private String email;
         this.pwHash=encoder.encode(password);
     }
 
-    public String getUsername(){
+    public String getName(){
         return name;
     }
 
