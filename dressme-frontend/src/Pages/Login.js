@@ -12,11 +12,6 @@ function Login() {
     setStatus(null);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setStatus(null);
-  };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -76,7 +71,7 @@ function Login() {
           type="password"
         />
 
-        <button onClick={handleSubmit} className="btn" type="button">
+        <button onClick={handleSubmit} className="btn" type="submit">
           Submit
         </button>
       </form>
