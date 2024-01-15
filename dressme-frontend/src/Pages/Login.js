@@ -19,8 +19,8 @@ function Login() {
     const formData = { email, password };
 
     try {
-      const response = await fetch('http://localhost:8080/Login', {
-        method: 'POST',
+      const response = await fetch('http://localhost:8080/UserLogin', {
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });

@@ -24,9 +24,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", maxAge = 3600)
 @RestController
-@RequestMapping("/Login")
+@RequestMapping("/UserLogin")
 public class LoginController {
 
     @Autowired
@@ -47,7 +47,7 @@ public class LoginController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @PostMapping("/Login")
+    @PostMapping ("/UserLogin")
     public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
                                                    HttpServletRequest request, Model model) {
         User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
@@ -64,6 +64,6 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "redirect:/login";
+        return "UserLogin";
     }
 }
