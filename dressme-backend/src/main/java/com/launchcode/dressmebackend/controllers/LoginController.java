@@ -1,7 +1,5 @@
 package com.launchcode.dressmebackend.controllers;
 
-
-
 import com.launchcode.dressmebackend.models.dto.LoginFormDTO;
 import com.launchcode.dressmebackend.exception.ErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +19,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/UserLogin")
 public class LoginController {
@@ -31,7 +29,7 @@ public class LoginController {
 
     private static final String userSessionKey = "user";
 
-    public static User getUserFromSession(HttpSession session, UserRepository userRepository) {
+    public User getUserFromSession(HttpSession session, UserRepository userRepository) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
@@ -40,7 +38,7 @@ public class LoginController {
         return userRepository.findById(userId).orElse(null);
     }
 
-    private static void setUserInSession(HttpSession session, User user) {
+    private void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
     }
 

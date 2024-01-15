@@ -15,7 +15,10 @@ public class User extends UserAbstractEntity{
     private String pwHash;
 
     @NotNull
-    private String email; 
+    private String email;
+
+    @NotNull
+    private String zipcode;
 
     public User(){}
 
@@ -33,6 +36,14 @@ public class User extends UserAbstractEntity{
 
     public String getEmail(){
         return email;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
     }
 
     public boolean isMatchingPassword(String password) {

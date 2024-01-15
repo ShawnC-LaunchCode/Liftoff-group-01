@@ -22,6 +22,9 @@ public class AuthenticationFilter implements HandlerInterceptor {
     @Autowired
     RegistrationController registrationController;
 
+    @Autowired
+    LoginController loginController= new LoginController();
+
     private static final List<String> whitelist = Arrays.asList("/login", "/register", "/logout", "/css");
 
     private static boolean isWhitelisted(String path) {
@@ -43,9 +46,9 @@ public class AuthenticationFilter implements HandlerInterceptor {
             // returning true indicates that the request may proceed
             return true;
         }
-// create sessions in login form, not at registration
+
         HttpSession session = request.getSession();
-        User user = LoginController.getUserFromSession(session, userRepository);
+        User user = loginController.getUserFromSession(session, userRepository);
 
         // The user is logged in
         if (user != null) {

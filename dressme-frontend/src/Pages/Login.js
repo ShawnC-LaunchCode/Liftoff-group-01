@@ -53,7 +53,7 @@ function Login() {
         {status === 'success' && <div className="success">Login successful!</div>}
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* Labels and inputs for form data */}
         <label className="userEmail">Email</label>
         <input
@@ -71,7 +71,7 @@ function Login() {
           type="password"
         />
 
-        <button onClick={handleSubmit} className="btn" type="submit">
+        <button className="btn" type="submit">
           Submit
         </button>
       </form>
