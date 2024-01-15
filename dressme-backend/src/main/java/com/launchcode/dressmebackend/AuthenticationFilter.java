@@ -1,6 +1,7 @@
 package com.launchcode.dressmebackend;
 
 import com.launchcode.dressmebackend.controllers.LoginController;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -19,14 +20,14 @@ public class AuthenticationFilter implements HandlerInterceptor {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    RegistrationController registrationController;
+//    @Autowired
+//    RegistrationController registrationController;
 
-    @Autowired
-    LoginController loginController;
-   // LoginController loginController= new LoginController();
+//    @Autowired
+//    LoginController loginController;
+//   // LoginController loginController= new LoginController();
 
-    private static final List<String> whitelist = Arrays.asList("/UserLogin", "/Register", "/logout", "/css", "/api/user/zipcode");
+    private static final List<String> whitelist = Arrays.asList("/UserLogin", "/logout", "/css", "/api/user/zipcode");
 
     private static boolean isWhitelisted(String path) {
         for (String pathRoot : whitelist) {
@@ -49,7 +50,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
         }
 
         HttpSession session = request.getSession();
-        User user = loginController.getUserFromSession(session, userRepository);
+        User user = getUserFromSession(session);
 
         // The user is logged in
         if (user != null) {
@@ -61,4 +62,13 @@ public class AuthenticationFilter implements HandlerInterceptor {
         return false;
     }
 
+    private User getUserFromSession(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("user");
+        if (userId == null) {
+            return null;
+        }
+
+        return userRepository.findById(userId).orElse(null);
+
+    }
 }

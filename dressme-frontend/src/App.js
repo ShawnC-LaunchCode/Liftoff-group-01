@@ -16,7 +16,7 @@ import SearchCities from './Weather/SearchCities';
 
 
 import Login from './Pages/Login.js';
-import Register from './Pages/Register.js';
+import Register from './Pages/Register.jsx';
 
 
 import Home from './Pages/Home.js';

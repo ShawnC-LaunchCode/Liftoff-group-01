@@ -60,8 +60,18 @@ function UserRegistration(){
     try {
       const response = await fetch('http://localhost:8080/Register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        //'Content-Type': 'multipart/form-data',
+        'Accept': '*/*',
+
+        'Host': 'localhost:8080',
+        'Accept-Encoding':'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Content-Length': '172'
+        },
+        body: JSON.stringify(formData)
       });
 
       if (response.ok) {

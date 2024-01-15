@@ -5,27 +5,57 @@
 
 <header th:replace="fragments :: header"></header>
 
-<form method="post">
-    <div class="form-group">
-        <label>Username
-            <input class="form-control" th:field="${registerFormDTO.username}" />
-        </label>
-        <p class="error" th:errors="${registerFormDTO.username}"></p>
-    </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" th:field="${registerFormDTO.password}" type="password" />
-        </label>
-        <p class="error" th:errors="${registerFormDTO.password}"></p>
-    </div>
-    <div class="form-group">
-        <label>Verify Password
-            <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />
-        </label>
+
+<div className="form">
+    <h1>User Registration</h1>
+
+    <div className="messages">
+        {error && <div className="error">{error}</div>}
+        {successMessage && <div className="success">{successMessage}</div>}
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Register" />
-</form>
+    <form onSubmit={handleSubmit}>
+        <label>Email</label>
+        <input type="text" value={email} onChange={handleEmailChange} required />
+
+        <label>First Name</label>
+        <input type="text" value={firstname} onChange={handleFirstNameChange} required />
+
+        <label>Last Name</label>
+        <input type="text" value={lastname} onChange={handleLastNameChange} required />
+
+        <label>Password</label>
+        <input type="password" value={password} onChange={handlePasswordChange} required />
+
+        <label>Confirm Password</label>
+        <input type="password" value={confirmPassword} onChange={handleConfirmPasswordChange} required />
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+
+<!--<form method="post">-->
+<!--    <div class="form-group">-->
+<!--        <label>Username-->
+<!--            <input class="form-control" th:field="${registerFormDTO.username}" />-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${registerFormDTO.username}"></p>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label>Password-->
+<!--            <input class="form-control" th:field="${registerFormDTO.password}" type="password" />-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${registerFormDTO.password}"></p>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label>Verify Password-->
+<!--            <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password" />-->
+<!--        </label>-->
+<!--    </div>-->
+
+<!--    <input type="submit" class="btn btn-primary" value="Register" />-->
+<!--</form>-->
 
 </body>
 </html>

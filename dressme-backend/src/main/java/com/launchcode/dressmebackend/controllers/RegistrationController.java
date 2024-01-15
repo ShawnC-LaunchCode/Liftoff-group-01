@@ -19,6 +19,7 @@ import com.launchcode.dressmebackend.models.dto.LoginFormDTO;
 import com.launchcode.dressmebackend.models.dto.RegisterFormDTO;
 import com.launchcode.dressmebackend.exception.ErrorResponse;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequestMapping("/Register")
@@ -27,27 +28,28 @@ public class RegistrationController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping (value = "/Register", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/Register") //, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> registerUser(@RequestBody RegisterFormDTO registerFormDTO) {
-        try {
-            // Simple validation
-            if (registerFormDTO.getFirstName() == null || registerFormDTO.getLastName()== null||registerFormDTO.getEmail() == null || registerFormDTO.getPassword() == null) {
-                return ResponseEntity.badRequest().body("Please provide all registration fields");
-            }
-
-            // Check if the user with the given email already exists
-            if (userRepository.findByEmail(registerFormDTO.getEmail()) != null) {
-                return ResponseEntity.badRequest().body("A user with that email already exists");
-            }
-
-            // Create a new user and save to the database
-            User newUser = new User(registerFormDTO.getFirstName(), registerFormDTO.getLastName(),registerFormDTO.getPassword(), registerFormDTO.getEmail());
-            userRepository.save(newUser);
-
-            return ResponseEntity.ok("User registered successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Internal Server Error");
-        }
-
+//        try {
+//            // Simple validation
+//            if (registerFormDTO.getFirstName() == null || registerFormDTO.getLastName()== null||registerFormDTO.getEmail() == null || registerFormDTO.getPassword() == null) {
+//                return ResponseEntity.badRequest().body("Please provide all registration fields");
+//            }
+//
+//            // Check if the user with the given email already exists
+//            if (userRepository.findByEmail(registerFormDTO.getEmail()) != null) {
+//                return ResponseEntity.badRequest().body("A user with that email already exists");
+//            }
+//
+//            // Create a new user and save to the database
+//            User newUser = new User(registerFormDTO.getFirstName(), registerFormDTO.getLastName(),registerFormDTO.getPassword(), registerFormDTO.getEmail());
+//            userRepository.save(newUser);
+        System.out.println("Registration Success");
+//
+//            return ResponseEntity.ok("User registered successfully");
+//        } catch (Exception e) {
+        //return ResponseEntity.status(500).body("Internal Server Error");
+//        }
+        return ResponseEntity.status(200).body("Shawn");
     }
 }
