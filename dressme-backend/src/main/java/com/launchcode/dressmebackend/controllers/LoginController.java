@@ -17,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import java.util.Optional;
 
 
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
@@ -45,17 +46,24 @@ public class LoginController {
     @PostMapping("/UserLogin")
     public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
                                                    HttpServletRequest request, Model model) {
-        User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
+        Optional<User> userOptional = userRepository.findByEmail(loginFormDTO.getEmail());
 
-        if (theUser == null || !theUser.isMatchingPassword(loginFormDTO.getPassword())) {
+
+        if (userOptional.isPresent()) {
+            User theUser = userOptional.get();
+
+            if (!theUser.isMatchingPassword(loginFormDTO.getPassword())) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new ErrorResponse("Invalid credentials, login failed."));
+            }
+
+            setUserInSession(request.getSession(), theUser);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login successful!");
+        } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErrorResponse("Invalid credentials, login failed."));
         }
-
-        setUserInSession(request.getSession(), theUser);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login successful!");
     }
-
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         request.getSession().invalidate();

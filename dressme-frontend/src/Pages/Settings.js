@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 import SetEverydayDresscode from "../components/SetEverydayDresscode";
 import SetStyle from "../components/SetStyle";
+import ZipcodeForm from "../components/ZipcodeForm";
 
 
 export default function Settings(){
@@ -14,6 +15,7 @@ export default function Settings(){
 
         <SetEverydayDresscode />
         <SetStyle />
+        <ZipcodeForm/>
         </>
     )
 }
