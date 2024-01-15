@@ -46,23 +46,21 @@ public class LoginController {
     @PostMapping //("/UserLogin")
     public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
                                                    HttpServletRequest request, Model model) {
-        Optional<User> userOptional = userRepository.findByEmail(loginFormDTO.getEmail());
+        User theUser = userRepository.findByEmailandPassword(loginFormDTO.getEmail(), loginFormDTO.getPassword());
 
 
-        if (userOptional.isPresent()) {
-            User theUser = userOptional.get();
+        if (theUser == null) {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse("Invalid credentials, login failed."));
+        }
 
             if (!theUser.isMatchingPassword(loginFormDTO.getPassword())) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(new ErrorResponse("Invalid credentials, login failed."));
+            } else {
+                setUserInSession(request.getSession(), theUser);
+                return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login successful!");
             }
-
-            setUserInSession(request.getSession(), theUser);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login successful!");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ErrorResponse("Invalid credentials, login failed."));
-        }
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {

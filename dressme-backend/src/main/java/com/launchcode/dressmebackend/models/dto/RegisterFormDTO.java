@@ -8,7 +8,11 @@ public class RegisterFormDTO {
 
     @NotNull
     @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters.")
-    private String name;
+    private String firstName;
+
+    @NotNull
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters.")
+    private String lastName;
 
     @NotNull
     @Email(message = "Invalid email address")
@@ -24,21 +28,26 @@ public class RegisterFormDTO {
         // Default constructor
     }
 
-    public RegisterFormDTO(String name, String email, String password) {
-        this.name = name;
+    public RegisterFormDTO(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName=lastName;
         this.email = email;
         this.password = password;
     }
 
     // Getters and setters
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLastName(){ return lastName;}
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public void setLastName(String lastName){ this.lastName= lastName;}
 
     public String getEmail() {
         return email;
