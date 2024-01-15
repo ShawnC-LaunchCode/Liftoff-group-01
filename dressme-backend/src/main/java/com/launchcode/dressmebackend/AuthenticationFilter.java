@@ -45,7 +45,7 @@ public class AuthenticationFilter implements HandlerInterceptor {
         }
 // create sessions in login form, not at registration
         HttpSession session = request.getSession();
-        User user = LoginController.getUserFromSession(session);
+        User user = LoginController.getUserFromSession(session, userRepository);
 
         // The user is logged in
         if (user != null) {

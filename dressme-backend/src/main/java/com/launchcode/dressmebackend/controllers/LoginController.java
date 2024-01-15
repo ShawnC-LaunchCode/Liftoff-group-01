@@ -20,21 +20,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8080", allowCredentials = "true", maxAge = 3600)
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/UserLogin")
 public class LoginController {
 
     @Autowired
-    private static UserRepository userRepository;
+    private UserRepository userRepository;
 
     private static final String userSessionKey = "user";
 
-    public static User getUserFromSession(HttpSession session) {
+    public static User getUserFromSession(HttpSession session, UserRepository userRepository) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
@@ -47,7 +44,7 @@ public class LoginController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @PostMapping ("/UserLogin")
+    @PostMapping("/UserLogin")
     public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
                                                    HttpServletRequest request, Model model) {
         User theUser = userRepository.findByEmail(loginFormDTO.getEmail());
