@@ -19,7 +19,7 @@ import com.launchcode.dressmebackend.models.dto.RegisterFormDTO;
 import com.launchcode.dressmebackend.exception.ErrorResponse;
 
 @RestController
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RequestMapping("/Register")
 public class RegistrationController {
 

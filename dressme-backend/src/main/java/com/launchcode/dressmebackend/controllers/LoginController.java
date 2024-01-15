@@ -21,7 +21,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 
 
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/UserLogin")
 public class LoginController {
