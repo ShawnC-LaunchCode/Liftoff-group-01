@@ -20,7 +20,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import java.util.Optional;
 
 
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "*", allowedHeaders={"Content-Type"})
 @RestController
 @RequestMapping("/UserLogin")
 public class LoginController {
@@ -43,7 +43,7 @@ public class LoginController {
         session.setAttribute(userSessionKey, user.getId());
     }
 
-    @PostMapping("/UserLogin")
+    @PostMapping //("/UserLogin")
     public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
                                                    HttpServletRequest request, Model model) {
         Optional<User> userOptional = userRepository.findByEmail(loginFormDTO.getEmail());

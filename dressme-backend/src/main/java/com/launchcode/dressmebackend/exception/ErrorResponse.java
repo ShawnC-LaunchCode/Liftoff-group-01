@@ -1,6 +1,8 @@
 package com.launchcode.dressmebackend.exception;
 
 public class ErrorResponse {
+
+
     private String message;
 
     public ErrorResponse(String message) {
