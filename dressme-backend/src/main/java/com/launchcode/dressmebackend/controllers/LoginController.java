@@ -11,6 +11,7 @@ import com.launchcode.dressmebackend.models.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -28,39 +29,34 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    private static final String userSessionKey = "user";
+    private static final String sessionID = "user";
 
     public User getUserFromSession(HttpSession session, UserRepository userRepository) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        Integer userId = (Integer) session.getAttribute(sessionID);
         if (userId == null) {
             return null;
         }
 
-        return userRepository.findById(userId).orElse(null);
+        return userRepository.findBySessionId(userId); //.orElse(null);
     }
 
     private void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getId());
+        session.setAttribute(sessionID, user.getSessionId());
     }
 
-    @PostMapping //("/UserLogin")
+    @PostMapping (value = "/UserLogin", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> processLoginForm(@RequestBody @Valid LoginFormDTO loginFormDTO, Errors errors,
                                                    HttpServletRequest request, Model model) {
-        User theUser = userRepository.findByEmailandPassword(loginFormDTO.getEmail(), loginFormDTO.getPassword());
+        User theUser = userRepository.findByEmailAndPwHash(loginFormDTO.getEmail(), loginFormDTO.getpwHash());
 
-
-        if (theUser == null) {
-             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        if (theUser != null) {
+            setUserInSession(request.getSession(), theUser);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login successful!");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ErrorResponse("Invalid credentials, login failed."));
         }
 
-            if (!theUser.isMatchingPassword(loginFormDTO.getPassword())) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ErrorResponse("Invalid credentials, login failed."));
-            } else {
-                setUserInSession(request.getSession(), theUser);
-                return ResponseEntity.status(HttpStatus.ACCEPTED).body("Login successful!");
-            }
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {

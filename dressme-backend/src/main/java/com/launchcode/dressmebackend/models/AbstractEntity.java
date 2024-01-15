@@ -12,14 +12,14 @@ import java.util.Objects;
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue
-    private int id;
+    private int sessionId; // changed from id
 
     @NotBlank(message = "Name is required")
     @Size(min = 3, max = 60, message = "Name must be between 3 and 60 characters")
     private String name;
 
-    public int getId() {
-        return id;
+    public int getSessionId() {
+        return sessionId;
     }
     public String getName() {
         return name;
@@ -35,12 +35,12 @@ public abstract class AbstractEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractEntity entity = (AbstractEntity) o;
-        return id == entity.id;
+        return sessionId == entity.sessionId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(sessionId);
     }
 
 }

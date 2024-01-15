@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,14 +20,14 @@ import com.launchcode.dressmebackend.models.dto.RegisterFormDTO;
 import com.launchcode.dressmebackend.exception.ErrorResponse;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequestMapping("/Register")
 public class RegistrationController {
 
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping
+    @PostMapping (value = "/Register", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> registerUser(@RequestBody RegisterFormDTO registerFormDTO) {
         try {
             // Simple validation
@@ -47,5 +48,6 @@ public class RegistrationController {
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Internal Server Error");
         }
+
     }
 }

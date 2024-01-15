@@ -8,10 +8,11 @@ import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    User findByName(String name);
-    User findByEmailandPassword(String email, String password);
+    User findByFirstName(String firstName);
+    User findByLastName(String lastName);
+    User findByEmailAndPwHash(String email, String pwHash);
     User findByEmail(String email);
-    User findBySessionId(String sessionId);
+    User findBySessionId(Integer sessionId);
     
 
 }

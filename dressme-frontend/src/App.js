@@ -18,6 +18,7 @@ import SearchCities from './Weather/SearchCities';
 import Login from './Pages/Login.js';
 import Register from './Pages/Register.js';
 
+
 import Home from './Pages/Home.js';
 import Events from './Pages/Events.js';
 import LogOut from './Pages/LogOut.js';

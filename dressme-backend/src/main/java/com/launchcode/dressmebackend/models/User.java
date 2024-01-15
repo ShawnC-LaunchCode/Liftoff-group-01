@@ -16,7 +16,7 @@ import java.util.Objects;
 
 
 @Entity
-public class User extends UserAbstractEntity{
+public class User extends AbstractEntity{
 
     @NotNull
     @NotEmpty
@@ -46,6 +46,7 @@ public class User extends UserAbstractEntity{
         this.lastName=lastName;
         this.email=email;
         this.pwHash=encoder.encode(password);
+
     }
 
     public String getFirstName(){
