@@ -21,7 +21,7 @@ function Login() {
 
   const handlesubmit=(e)=>{
     e.preventDefault();
-  }
+  
 
    const data={email, password};
     
@@ -39,7 +39,7 @@ function Login() {
     }).catch((err)=>{
       console.log(err.message)
     })
-    
+  }
 
     return (
       <div className="LoginForm">
@@ -49,9 +49,11 @@ function Login() {
   
   <form onSubmit= {handlesubmit}>
       <label>Email <input type="email" name="emailAddress" value={email} onChange={handleEmailChange}/></label>
-      <br/><label>Password <input type="text" name="password" value={password} onChange={handlePasswordChange}/></label>
+      <br/><label>Password <input type="password" name="password" value={password} onChange={handlePasswordChange}/></label>
       <br/><button className='btn' type="submit">Log In</button>
   </form>
+  <Link to="/forgot-password">Forgot Password?</Link>
+
   </div>
       </div>
     );
