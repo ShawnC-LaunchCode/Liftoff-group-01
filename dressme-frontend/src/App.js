@@ -30,6 +30,7 @@ import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
 import Forecast from './Weather/Forecast';
+import Calendar from './components/Calendar.jsx';
 
 
 
@@ -66,6 +67,7 @@ function App() {
           <Route path='/Checkweather' element={<Checkweather />}></Route>
           <Route path='/Sample' element={<Sample/>}></Route>
           <Route path='/Forecast' element={<Forecast/>}></Route>
+          <Route path='/Calendar' element={<Calendar/>}></Route>
          
           
         </Routes>
