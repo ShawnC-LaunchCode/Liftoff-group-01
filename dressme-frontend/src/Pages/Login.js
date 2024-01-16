@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import ForgotPassword from './ForgotPassword';
 
 function Login() {
 
@@ -52,7 +53,7 @@ function Login() {
       <br/><label>Password <input type="password" name="password" value={password} onChange={handlePasswordChange}/></label>
       <br/><button className='btn' type="submit">Log In</button>
   </form>
-  <Link to="/forgot-password">Forgot Password?</Link>
+  <Link to="/ForgotPassword">Forgot Password?</Link>
 
   </div>
       </div>

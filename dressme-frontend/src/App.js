@@ -30,6 +30,7 @@ import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
 import Forecast from './Weather/Forecast';
+import ForgotPassword from './Pages/ForgotPassword.js';
 
 
 
@@ -52,6 +53,7 @@ function App() {
         <Route path="/LogOut" element={<LogOut/>} />
         <Route path="/Events" element={<Events/>} />
         <Route path="/MyCloset" element={<MyCloset/>} />
+        <Route path="/ForgotPassword" element={<ForgotPassword/>} />
 
           <Route path='/listclothcategory' element={<ListClothCategory />}></Route>
           <Route path='/cloths' element={<ListCloths />}></Route>
