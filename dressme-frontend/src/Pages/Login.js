@@ -14,8 +14,9 @@ function Login() {
     setStatus(null);
   };
 
-  const handlePasswordchange= (e) => {
+  const handlePasswordChange= (e) => {
     setPassword(e.target.value);
+    setStatus(null);
   };
 
   const handlesubmit=(e)=>{
@@ -24,14 +25,15 @@ function Login() {
 
    const data={email, password};
     
-console.log(data);
+
     fetch("http://localhost:8080/login",{
-      method:"GET",
+      method:"POST",
       headers:{"content-type":"application/json"},
       body:JSON.stringify(data)
     }).then((res)=>{
       //alert('Saved successfully.');
-      Swal.fire({icon: "success",
+      Swal.fire({
+      icon: "success",
       title:"Login Successful: Redirecting to Home Page"});
       navigate('/Userpage');
     }).catch((err)=>{
@@ -46,9 +48,9 @@ console.log(data);
   <div>
   
   <form onSubmit= {handlesubmit}>
-      <label>Email <input type="email" name="emailAddress" value={handleEmailChange}/></label>
-      <br/><label>Password <input type="text" name="password" value={handlePasswordchange}/></label>
-      <br/><button id="loginButton" type="submit">Log In</button>
+      <label>Email <input type="email" name="emailAddress" value={email} onChange={handleEmailChange}/></label>
+      <br/><label>Password <input type="text" name="password" value={password} onChange={handlePasswordChange}/></label>
+      <br/><button className='btn' type="submit">Log In</button>
   </form>
   </div>
       </div>
