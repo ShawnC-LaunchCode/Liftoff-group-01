@@ -26,7 +26,7 @@ function Login() {
    const data={email, password};
     
 
-    fetch("http://localhost:8080/login",{
+    fetch("http://localhost:8080/Login",{
       method:"POST",
       headers:{"content-type":"application/json"},
       body:JSON.stringify(data)
