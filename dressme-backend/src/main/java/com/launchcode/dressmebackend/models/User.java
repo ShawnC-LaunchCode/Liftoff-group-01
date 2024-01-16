@@ -1,11 +1,14 @@
 package com.launchcode.dressmebackend.models;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//I can make user class extend AbstractEntity after merge
-//TODO: I believe once I extend abstractEntity, the error about user.getId will go away.
+import java.util.List;
+
+
 
 @Entity
 public class User extends UserAbstractEntity{
@@ -15,6 +18,17 @@ public class User extends UserAbstractEntity{
 
     @NotNull
     private String pwHash;
+
+    private String zipCode;
+
+    private  List<String> everydayDresscode;
+
+
+    @ElementCollection(fetch= FetchType.EAGER)
+    private List<String> stylePreferences;
+
+    @ElementCollection(fetch= FetchType.EAGER)
+    private List<String> everdayDresscode;
 
     public User(){}
 
@@ -31,6 +45,30 @@ public class User extends UserAbstractEntity{
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public List<String> getStylePreferences() {
+        return stylePreferences;
+    }
+
+    public void setStylePreferences(List<String> stylePreferences) {
+        this.stylePreferences = stylePreferences;
+    }
+
+    public List<String> getEverydayDresscode() {
+        return everydayDresscode;
+    }
+
+    public void setEverydayDresscode(List<String> everydayDresscode) {
+        this.everydayDresscode = everydayDresscode;
     }
 
 }
