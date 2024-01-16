@@ -2,6 +2,7 @@ import React from 'react';
 import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import NavBar from '../components/NavBar';
 
 function ListCloths() {
     const [search, setSearch] = useState('');
@@ -57,10 +58,14 @@ function ListCloths() {
 
 
   return (
-   
+    <>
+    <NavBar/>
 <div className="container">
+
 <div className="card">
+
 <div className="card-title">
+ 
                     <h2>Clothes Listing</h2>
                 </div> <div className="card-body">
                     <div className="divbtn">
@@ -114,6 +119,7 @@ function ListCloths() {
 
 
     </div>
+    </>
   )
   
 
