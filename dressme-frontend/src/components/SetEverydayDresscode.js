@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 function SetEverydayDresscode({userId}) {
 
-  
+  const userID= 1;
     const [selectedOptions, setSelectedOptions] = useState([]);
   
     const handleOptionChange = (e) => {
@@ -22,13 +22,13 @@ function SetEverydayDresscode({userId}) {
       const data = { userId, selectedOptions };
       console.log(data);
   
-      fetch("http://localhost:8080/Seteverydaydresscode", {
+      //TODO: Replace hard-coded user ID
+      fetch("http://localhost:8080/settings/1", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),
       })
-        .then((res) => res.json())
-        .then((result) => {
+        .then((res) => res.json()).then((result) => {
           console.log(result);
           // Add any additional logic based on the response from the backend
         })

@@ -3,6 +3,7 @@ package com.launchcode.dressmebackend.models;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 
 @Entity
+
 public class User extends UserAbstractEntity{
 
     @NotNull
@@ -28,7 +30,7 @@ public class User extends UserAbstractEntity{
     private List<String> stylePreferences;
 
     @ElementCollection(fetch= FetchType.EAGER)
-    private List<String> everydayDresscode;
+    private List<String> everydayDresscodeOptions;
 
     public User(){}
 
@@ -63,12 +65,13 @@ public class User extends UserAbstractEntity{
         this.stylePreferences = stylePreferences;
     }
 
-    public List<String> getEverydayDresscode() {
-        return everydayDresscode;
+    public List<String> getEverydayDresscodeOptions() {
+        return everydayDresscodeOptions;
     }
 
-    public void setEverydayDresscode(List<String> everydayDresscode) {
-        this.everydayDresscode = everydayDresscode;
+    public void setEverydayDresscodeOptions(List<String> everydayDresscodeOptions) {
+        this.everydayDresscodeOptions = everydayDresscodeOptions;
     }
-
 }
+
+
