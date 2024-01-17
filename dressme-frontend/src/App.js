@@ -69,7 +69,6 @@ function App() {
           <Route path='/Sample' element={<Sample/>}></Route>
           <Route path='/Forecast' element={<Forecast/>}></Route>
          
-          
         </Routes>
       </BrowserRouter>
       
