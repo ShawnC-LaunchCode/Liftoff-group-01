@@ -49,24 +49,7 @@ const Forecast = (units) => {
  
   return (
 
-    // <div className={cl.widgetForecast} style={{ marginTop: '50px' }}>
-    //   { (checkstatus) ?
-    //   (data && (
-
-    //     data.list.slice(0, 5).map((item, id) => (
-    //       <div className={cl.widgetItem} key={id}>
-    //         <div className={cl.day}><b>{forecastDays[id]}</b></div>
-    //         <div className={cl.icon}>
-    //           <img src={`icons/${item.weather[0].icon}.png`} alt="Icon" />
-    //         </div>
-    //         <div className={cl.max}>Max - {Math.round(item.main.temp_max)}°C</div>
-    //         <div className={cl.min}>Min - {Math.round(item.main.temp_min)}°C</div>
-    //         <div className={cl.description}>{item.weather[0].description}</div>
-    //       </div>
-    //     ))) )
-    //     :
-    //      <div>Loading</div>
-    //     }
+    
           
     
      <div class="row">
@@ -79,8 +62,8 @@ const Forecast = (units) => {
             
          <p>  <img src={`icons/${item.weather[0].icon}.png`} alt="Icon" /></p>
            
-         <p>   Max - {Math.round(item.main.temp_max)}°C</p>
-         <p>  Min - {Math.round(item.main.temp_min)}°C</p>
+         <p>   Max  {Math.round(item.main.temp_max)}°C</p>
+         <p>  Min  {Math.round(item.main.temp_min)}°C</p>
          <p>  {item.weather[0].description}</p>
           </div>
         ))) )
@@ -91,7 +74,7 @@ const Forecast = (units) => {
 
     </div>
 
-    // </div>
+    
   )
 
 }

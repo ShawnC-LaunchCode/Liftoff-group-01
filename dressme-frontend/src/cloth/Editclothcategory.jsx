@@ -2,6 +2,8 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
 
 function Editclothcategory() {
     const { cid } = useParams();
@@ -49,7 +51,7 @@ function Editclothcategory() {
 
     }
     return ( 
-        <div>
+        <div><NavBar/>
 
         <div className="row">
             <div className="offset-lg-3 col-lg-6">
@@ -57,7 +59,7 @@ function Editclothcategory() {
 
                     <div className="card" style={{"textAlign":"left"}}>
                         <div className="card-title">
-                            <h2>ClothesCategory Edit</h2>
+                            <h2>Edit ClothesCategory </h2>
                         </div>
                         <div className="card-body">
 
@@ -96,6 +98,7 @@ function Editclothcategory() {
 
             </div>
         </div>
+        <Footer/>
     </div>
      );
 }
