@@ -9,6 +9,8 @@ import CurrentWeather from './CurrentWeather';
 import Forecast from './Forecast';
 import Checkweather from './Checkweather';
 import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import OutfitSuggestion from "./OutfitSuggestion";
 
 
 const WeatherApp = () => {
@@ -94,7 +96,7 @@ const WeatherApp = () => {
     }
 
     return (
-        <div ><NavBar />
+        <div ><NavBar /><h3><b>Hi {window.sessionStorage.getItem("username")}, Welcome To Weather2Wear Application</b></h3>
             <div class="header"><b>Weather2Wear Application</b></div>
             <div class="backimage">
                 <div class="container">
@@ -104,9 +106,10 @@ const WeatherApp = () => {
                                 <br />&nbsp;
                             </form>
                             <div class="weather__units">
-
-                                <span class="weather_unit_celsius"><input type="radio" name="exampleRadios" id="metric" value="metric" checked={units === 'metric'} onClick={unitChange} /><b>Celsius</b></span>&nbsp;&nbsp;
+                                <div class="row"><div class="col">
+                                <span class="weather_unit_celsius"><input type="radio" name="exampleRadios" id="metric" value="metric" checked={units === 'metric'} onClick={unitChange} /><b>Celsius</b></span>&nbsp;&nbsp;</div><div class="col">
                                 <span class="weather_unit_farenheit"><input type="radio" name="exampleRadios" id="imperial" value="imperial" checked={units === 'imperial'} onClick={unitChange} /><b>Farenheit</b></span>
+                                </div></div>
                             </div>
                         </div>
                         {(typeof data.main != 'undefined') ?
@@ -129,7 +132,7 @@ const WeatherApp = () => {
                                 </form>
 
                                 <div class="weather__units">
-                                    <SearchCities onSearchChange={handleOnSearchChange} />
+                                    <SearchCities onSearchChange={handleOnSearchChange} /><br/>
                                     {currentWeather && (
 
 
@@ -144,6 +147,11 @@ const WeatherApp = () => {
                         </div>
 
                     </div><br />
+
+                    {(typeof data.main != 'undefined') ? 
+                <OutfitSuggestion /> :
+                <div>Loading...</div>}
+                <br/>
                     <div class="row">
 
 
@@ -154,7 +162,9 @@ const WeatherApp = () => {
 
                     </div>
 
-                </div></div></div>
+                </div></div>
+                <Footer/>
+                </div>
     );
 }
 export default WeatherApp;

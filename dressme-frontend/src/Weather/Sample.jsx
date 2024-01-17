@@ -8,6 +8,7 @@ import SearchCities from './SearchCities';
 import CurrentWeather from './CurrentWeather';
 import Forecast from './Forecast';
 import Checkweather from './Checkweather';
+import OutfitSuggestion from "./OutfitSuggestion";
 
 
 
@@ -147,6 +148,11 @@ const Sample = () => {
                     </div>
 
                 </div><br/>
+               
+                {(typeof data.main != 'undefined') ? 
+                <OutfitSuggestion /> :
+                <div>Loading...</div>}
+            <br/>
                 <div class="row">
                     <div class="col px-md-5 bg-primary rounded-6"><br /><br />
                         
