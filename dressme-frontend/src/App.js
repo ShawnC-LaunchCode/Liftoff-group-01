@@ -30,7 +30,7 @@ import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
 import Forecast from './Weather/Forecast';
-import Calendar from './components/Calendar.jsx';
+import Calendar from './calendar/Calendar';
 
 
 
