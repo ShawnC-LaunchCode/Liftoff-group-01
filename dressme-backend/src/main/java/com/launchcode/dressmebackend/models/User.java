@@ -1,9 +1,6 @@
 package com.launchcode.dressmebackend.models;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -22,7 +19,8 @@ public class User extends UserAbstractEntity{
     @NotNull
     private String pwHash;
 
-    private String zipCode;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Zipcode zipcode;
 
    // private  List<String> everydayDresscode;
 
@@ -30,8 +28,10 @@ public class User extends UserAbstractEntity{
     @ElementCollection(fetch= FetchType.EAGER)
     private List<String> stylePreferences;
 
-    @ElementCollection(fetch= FetchType.EAGER)
-    private List<String> everydayDresscodeOptions;
+//    @ElementCollection(fetch= FetchType.EAGER)
+//    private List<String> everydayDresscodeOptions;
+@OneToOne(cascade = CascadeType.ALL)
+    private Dresscode dresscode;
 
     public User(){}
 
@@ -50,12 +50,12 @@ public class User extends UserAbstractEntity{
         return encoder.matches(password, pwHash);
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public Zipcode getZipcode() {
+        return zipcode;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZipCode(Zipcode zipCode) {
+        this.zipcode = zipcode;
     }
 
     public List<String> getStylePreferences() {
@@ -66,13 +66,27 @@ public class User extends UserAbstractEntity{
         this.stylePreferences = stylePreferences;
     }
 
-    public List<String> getEverydayDresscodeOptions() {
-        return everydayDresscodeOptions;
+    public Dresscode getDresscode(){
+        return dresscode;
     }
 
-    public void setEverydayDresscodeOptions(List<String> everydayDresscodeOptions) {
-        this.everydayDresscodeOptions = everydayDresscodeOptions;
+    public void setDresscode(Dresscode dresscode) {
+        this.dresscode=dresscode;
     }
+
+//    public List<String> getEverydayDresscodeOptions() {
+//        return everydayDresscodeOptions;
+//    }
+//
+//    public void setEverydayDresscodeOptions(List<String> everydayDresscodeOptions) {
+//        this.everydayDresscodeOptions = everydayDresscodeOptions;
+
+    //}
+
+
+
+
+
 }
 
 

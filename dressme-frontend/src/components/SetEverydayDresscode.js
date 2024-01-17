@@ -23,7 +23,7 @@ function SetEverydayDresscode({userId}) {
       console.log(data);
   
       //TODO: Replace hard-coded user ID
-      fetch("http://localhost:8080/settings/1", {
+      fetch("http://localhost:8080/dresscode/1", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),

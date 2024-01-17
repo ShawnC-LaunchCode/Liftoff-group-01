@@ -7,6 +7,10 @@ public class Zipcode extends AbstractEntity{
 
     private Integer zipcode;
 
+    public Zipcode(){
+
+    }
+
     public Integer getZipCode() {
         return zipcode;
     }
