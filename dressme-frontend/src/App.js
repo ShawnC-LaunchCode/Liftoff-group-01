@@ -30,17 +30,7 @@ import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
 import Forecast from './Weather/Forecast';
-<<<<<<< HEAD
 import ForgotPassword from './Pages/ForgotPassword.js';
-=======
-import Wlogin from './Weather/Wlogin';
-import LoginRegister from './Weather/LoginRegister';
-import ListCloset from './Mycloset/ListCloset';
-import AddCloset from './Mycloset/AddCloset';
-import EditCloset from './Mycloset/EditCloset';
-import Footer from './components/Footer';
-import OutfitSuggestion from './Weather/OutfitSuggestion';
->>>>>>> 2c1f5065629a3c6e760cf37f6b24584b5b0a39b0
 
 
 
@@ -63,11 +53,10 @@ function App() {
         <Route path="/LogOut" element={<LogOut/>} />
         <Route path="/Events" element={<Events/>} />
         <Route path="/MyCloset" element={<MyCloset/>} />
-<<<<<<< HEAD
+
         <Route path="/ForgotPassword" element={<ForgotPassword/>} />
-=======
+
        
->>>>>>> 2c1f5065629a3c6e760cf37f6b24584b5b0a39b0
 
           <Route path='/listclothcategory' element={<ListClothCategory />}></Route>
           <Route path='/cloths' element={<ListCloths />}></Route>
