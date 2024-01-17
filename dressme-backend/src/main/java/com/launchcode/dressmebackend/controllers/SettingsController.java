@@ -10,11 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/settings")
+@CrossOrigin(origins="*")
+@RequestMapping("/settings")
 public class SettingsController {
 
     @Autowired
-    private UserRepository userRepository; // Assuming you have a UserRepository
+    private UserRepository userRepository;
+
+    private User user;
 
     @PostMapping("/update-settings")
     public ResponseEntity<String> updateSettings(@RequestBody Settings settings) {

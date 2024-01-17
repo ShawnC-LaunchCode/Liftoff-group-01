@@ -21,14 +21,14 @@ public class User extends UserAbstractEntity{
 
     private String zipCode;
 
-    private  List<String> everydayDresscode;
+   // private  List<String> everydayDresscode;
 
 
     @ElementCollection(fetch= FetchType.EAGER)
     private List<String> stylePreferences;
 
     @ElementCollection(fetch= FetchType.EAGER)
-    private List<String> everdayDresscode;
+    private List<String> everydayDresscode;
 
     public User(){}
 
