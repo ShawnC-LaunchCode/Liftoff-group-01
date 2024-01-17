@@ -14,7 +14,7 @@ import Searchfilter from './cloth/Searchfilter';
 import WeatherApp from './Weather/WeatherApp';
 import SearchCities from './Weather/SearchCities';
 
-
+//import Userhomepage from './Pages/Userhomepage';
 import Login from './Pages/Login.js';
 import Register from './Pages/Register.js';
 
@@ -30,6 +30,13 @@ import Checkweather from './Weather/Checkweather';
 import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
 import Forecast from './Weather/Forecast';
+import Wlogin from './Weather/Wlogin';
+import LoginRegister from './Weather/LoginRegister';
+import ListCloset from './Mycloset/ListCloset';
+import AddCloset from './Mycloset/AddCloset';
+import EditCloset from './Mycloset/EditCloset';
+import Footer from './components/Footer';
+import OutfitSuggestion from './Weather/OutfitSuggestion';
 
 
 
@@ -43,7 +50,7 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Wlogin />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/HomePage" element={<Userpage />} /> 
@@ -52,6 +59,7 @@ function App() {
         <Route path="/LogOut" element={<LogOut/>} />
         <Route path="/Events" element={<Events/>} />
         <Route path="/MyCloset" element={<MyCloset/>} />
+       
 
           <Route path='/listclothcategory' element={<ListClothCategory />}></Route>
           <Route path='/cloths' element={<ListCloths />}></Route>
@@ -66,11 +74,17 @@ function App() {
           <Route path='/Checkweather' element={<Checkweather />}></Route>
           <Route path='/Sample' element={<Sample/>}></Route>
           <Route path='/Forecast' element={<Forecast/>}></Route>
+          <Route path='/Wlogin' element={<Wlogin/>}></Route>
+          <Route path='/loginregister' element={<LoginRegister/>}></Route>
+          <Route path='/ListCloset' element={<ListCloset/>}></Route>
+          <Route path='/AddCloset' element={<AddCloset/>}></Route>
+          <Route path='/EditCloset/:c_id' element={<EditCloset/>}></Route>
+          <Route path='/OutfitSuggestion' element={<OutfitSuggestion/>}></Route>
          
           
         </Routes>
       </BrowserRouter>
-      
+     
     </div>
   );
 }
