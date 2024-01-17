@@ -15,6 +15,7 @@ import java.util.List;
 
 public class User extends UserAbstractEntity{
 
+
     @NotNull
     private String username;
 
