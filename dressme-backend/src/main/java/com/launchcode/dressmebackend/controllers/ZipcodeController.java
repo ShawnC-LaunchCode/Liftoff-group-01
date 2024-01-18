@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("zipcode")
 public class ZipcodeController {
 
     @Autowired
@@ -29,15 +27,19 @@ public class ZipcodeController {
     private UserRepository userRepository;
 
 
-    @PostMapping("/{id}")
-    public ResponseEntity<String> addZipcode(@RequestBody Zipcode zipcode, @PathVariable int id) {
-        User user = userRepository.findById(id).orElse(null);
+    @PostMapping("/Zipcode")
+    public ResponseEntity<String> addZipcode(@RequestBody Request body) {
+        User user = userRepository.findByUsername(body.username()).orElse(null);
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
 //        return zipcodeRepository.save(zipcode);
         }
+        user.setZipcode(body.newZipcode());
+        userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("Zip Code Created");
     }
+
+    public record Request(String newZipcode, String username) {}
 }
 
 

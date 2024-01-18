@@ -9,7 +9,10 @@ export default function SetStyle(userId) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { userId, selectedOption };
+
+    const username = sessionStorage.getItem("username")
+
+    const data = { username, selectedOption };
     console.log(data);
 
     fetch("http://localhost:8080/StylePreferences", {
@@ -17,7 +20,7 @@ export default function SetStyle(userId) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((result) => {
         console.log(result);
         // Add any additional logic based on the response from the backend

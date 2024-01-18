@@ -31,7 +31,8 @@ import Sample from './Weather/Sample';
 import NavBar from './components/NavBar';
 import Forecast from './Weather/Forecast';
 import ForgotPassword from './Pages/ForgotPassword.js';
-
+import Wlogin from './Weather/Wlogin.jsx';
+import LoginRegister from './Weather/LoginRegister.jsx';
 
 
 
@@ -44,9 +45,9 @@ function App() {
       
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Wlogin />} />
-        <Route path="/Register" element={<Register />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/LoginRegister" element={<LoginRegister />} />
+        <Route path="/Login" element={<Wlogin />} />
         <Route path="/HomePage" element={<Userpage />} /> 
         <Route path="/Notifications" element={<Notifications/>} />
         <Route path="/Settings" element={<Settings/>} />
@@ -71,12 +72,12 @@ function App() {
           <Route path='/Checkweather' element={<Checkweather />}></Route>
           <Route path='/Sample' element={<Sample/>}></Route>
           <Route path='/Forecast' element={<Forecast/>}></Route>
-          <Route path='/Wlogin' element={<Wlogin/>}></Route>
-          <Route path='/loginregister' element={<LoginRegister/>}></Route>
+          {/* <Route path='/Wlogin' element={<Wlogin/>}></Route> */}
+          {/* <Route path='/loginregister' element={<LoginRegister/>}></Route>
           <Route path='/ListCloset' element={<ListCloset/>}></Route>
           <Route path='/AddCloset' element={<AddCloset/>}></Route>
           <Route path='/EditCloset/:c_id' element={<EditCloset/>}></Route>
-          <Route path='/OutfitSuggestion' element={<OutfitSuggestion/>}></Route>
+          <Route path='/OutfitSuggestion' element={<OutfitSuggestion/>}></Route> */}
          
         </Routes>
       </BrowserRouter>

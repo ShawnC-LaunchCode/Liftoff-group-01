@@ -56,7 +56,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterFormDTO registerFormDTO) {
 
-        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername());
+        User existingUser = userRepository.findByUsername(registerFormDTO.getUsername()).orElse(null);
 
         if (existingUser != null) {
             return ResponseEntity.ok(Map.of("success", false, "message", "User already exists"));
@@ -82,7 +82,7 @@ public class AuthenticationController {
     public ResponseEntity<?> loginUser(@RequestBody LoginFormDTO loginFormDTO) {
 
 
-        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
+        User theUser = userRepository.findByUsername(loginFormDTO.getUsername()).orElse(null);
 
         if (theUser == null) {
             return ResponseEntity.badRequest().body("Invalid username");

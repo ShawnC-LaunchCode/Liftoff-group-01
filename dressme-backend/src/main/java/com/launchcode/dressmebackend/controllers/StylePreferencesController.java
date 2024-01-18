@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("stylePreferences")
 public class StylePreferencesController {
 
     @Autowired
@@ -28,15 +26,20 @@ public class StylePreferencesController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/{id}")
-    public ResponseEntity<String> addStylePreferences(@RequestBody StylePreferences stylePreferences, @PathVariable int id) {
-        User user = userRepository.findById(id).orElse(null);
+    @PostMapping("/StylePreferences")
+    public ResponseEntity<String> addStylePreferences(@RequestBody Request body) {
+        User user = userRepository.findByUsername(body.username()).orElse(null);
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
 //        return zipcodeRepository.save(zipcode);
         }
+
+        user.setStylePreferences(body.selectedOption());
+        userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body("Style Preferences Created");
 
 
     }
+
+    public record Request(String selectedOption, String username) {}
 }

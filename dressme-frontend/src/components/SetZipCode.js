@@ -1,4 +1,5 @@
 import React, { useState} from "react";
+import Login from "../Pages/Login";
 
 export default function SetZipCode(userId) {
 
@@ -11,7 +12,9 @@ export default function SetZipCode(userId) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = { userId, newZipcode };
+    const username = sessionStorage.getItem("username")
+
+    const data = { username, newZipcode };
     console.log(data);
 
     fetch("http://localhost:8080/Zipcode", {
@@ -19,7 +22,7 @@ export default function SetZipCode(userId) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+      .then((res) => res.text())
       .then((result) => {
         console.log(result);
         // Add any additional logic based on the response from the backend

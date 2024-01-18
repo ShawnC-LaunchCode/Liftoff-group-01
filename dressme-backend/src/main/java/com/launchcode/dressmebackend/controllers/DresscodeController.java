@@ -3,26 +3,23 @@ package com.launchcode.dressmebackend.controllers;
 
 import com.launchcode.dressmebackend.data.DresscodeRepository;
 import com.launchcode.dressmebackend.data.UserRepository;
-import com.launchcode.dressmebackend.models.Dresscode;
+import com.launchcode.dressmebackend.exception.ResourceNotFoundError;
 import com.launchcode.dressmebackend.models.User;
-import com.launchcode.dressmebackend.models.Zipcode;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("dresscode")
-
 public class DresscodeController {
     @Autowired
     DresscodeRepository dresscodeRepository;
@@ -31,18 +28,22 @@ public class DresscodeController {
     UserRepository userRepository;
 
 
-    @PostMapping("/{userId}")
-
-    public ResponseEntity<String> addDresscode(@RequestBody Dresscode dresscode, @PathVariable int userId) {
-        User user = userRepository.findById(userId).orElse(null);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/dresscode", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String addDresscode(@RequestBody Request body) {
+        User user = userRepository.findByUsername(body.username()).orElse(null);
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-//        return zipcodeRepository.save(zipcode);
+            throw new ResourceNotFoundError("User not found");
         }
-        user.setDresscode(dresscode);
+//        List<String> selectedOptions=dresscode.getSelectedOptions();
+        user.setDresscodePreferences(body.selectedOptions());
         userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Dresscode Created");
+        return "Dresscode Created";
     }
 
-}
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResourceNotFoundError.class)
+    public void errorHandler() {}
 
+    public record Request(List<String> selectedOptions, String username) {}
+}

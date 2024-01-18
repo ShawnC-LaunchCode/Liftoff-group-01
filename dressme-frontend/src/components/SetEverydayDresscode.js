@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 
 function SetEverydayDresscode({userId}) {
 
-  const userID= 1;
+  
     const [selectedOptions, setSelectedOptions] = useState([]);
+
+
   
     const handleOptionChange = (e) => {
       const optionValue = e.target.value;
@@ -18,17 +20,19 @@ function SetEverydayDresscode({userId}) {
 
     const handleSubmit = (e) => {
       e.preventDefault();
+
+      const username = sessionStorage.getItem("username")
   
-      const data = { userId, selectedOptions };
+      const data = {selectedOptions, username};
       console.log(data);
   
       //TODO: Replace hard-coded user ID
-      fetch("http://localhost:8080/dresscode/1", {
+      fetch("http://localhost:8080/dresscode" , {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data),
       })
-        .then((res) => res.json()).then((result) => {
+        .then((res) => res.text()).then((result) => {
           console.log(result);
           // Add any additional logic based on the response from the backend
         })

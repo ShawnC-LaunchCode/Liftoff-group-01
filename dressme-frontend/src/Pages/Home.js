@@ -13,7 +13,7 @@ export default function Home(){
 
 
 <br/> <br/> 
-<a href= "/Register">
+<a href= "/LoginRegister">
 <button name="createAccountButton" >Create Account</button>
 </a>
 

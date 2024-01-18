@@ -3,10 +3,6 @@ import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import NavBar from '../components/NavBar';
-<<<<<<< HEAD
-=======
-import Footer from '../components/Footer';
->>>>>>> 2c1f5065629a3c6e760cf37f6b24584b5b0a39b0
 
 function ListCloths() {
     const [search, setSearch] = useState('');
@@ -62,12 +58,8 @@ function ListCloths() {
 
 
   return (
-<<<<<<< HEAD
     <>
     <NavBar/>
-=======
-   <div><NavBar/>
->>>>>>> 2c1f5065629a3c6e760cf37f6b24584b5b0a39b0
 <div className="container">
 
 <div className="card">
@@ -127,12 +119,7 @@ function ListCloths() {
 
 
     </div>
-<<<<<<< HEAD
     </>
-=======
-    <Footer/>
-    </div>
->>>>>>> 2c1f5065629a3c6e760cf37f6b24584b5b0a39b0
   )
   
 
