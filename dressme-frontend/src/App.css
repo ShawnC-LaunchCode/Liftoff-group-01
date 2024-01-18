@@ -1,3 +1,8 @@
+/* styles.css */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+/* Your custom styles go here */
+
+
 .App {
   text-align: center;
 }
