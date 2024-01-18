@@ -1,19 +1,20 @@
 import React from "react";
+import styles from './calendarStyles.module.css';
 
-export const DeleteEventModal = ({ onDelete, eventText, onClose }) => {
+export const DeleteEventModal = ({ onDelete, eventText, dressCodeText, onClose }) => {
     return (
         <>
-            <div id="deleteEventModal">
+            <div id={styles.DeleteEventModal}>
                 <h2>Event</h2>
 
-                <p id="eventText">{eventText}</p>
-                <p id="dressCodeText"></p>
+                <p id={styles.eventText}>{eventText}</p>
+                <p id={styles.dressCodeText}>{dressCodeText}</p>
 
-                <button onClick={onDelete} id="deleteButton">Delete</button>
-                <button onClick={onClose} id="closeButton">Close</button>
+                <button onClick={onDelete} id={styles.deleteButton}>Delete</button>
+                <button onClick={onClose} id={styles.closeButton}>Close</button>
             </div>
 
-            <div id="modalBackDrop"></div>
+            <div id={styles.modalBackDrop}></div>
         </>
     );
 }

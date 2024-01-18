@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CalendarHeader } from "./CalendarHeader";
 import { Day } from "./Day";
-import './calendarStyles.css';
+import styles from './calendarStyles.module.css';
 import { NewEventModal } from "./NewEventModal";
 import { DeleteEventModal } from "./DeleteEventModal";
 
@@ -39,6 +39,7 @@ const Calendar = () => {
             month: 'numeric',
             day: 'numeric',
         });
+
         setDateDisplay(`${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`);
         const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
@@ -70,14 +71,14 @@ const Calendar = () => {
     
     return (
         <>
-        <div id="container">
+        <div id={styles.container}>
             <CalendarHeader     
                 dateDisplay={dateDisplay}
                 onNext={() => setNav(nav + 1)}
                 onBack={() => setNav(nav - 1)}
             />
 
-            <div id="weekdays">
+            <div id={styles.weekdays}>
                 <div>Sunday</div>
                 <div>Monday</div>
                 <div>Tuesday</div>
@@ -87,7 +88,7 @@ const Calendar = () => {
                 <div>Saturday</div>
             </div>
 
-            <div id="calendar">
+            <div id={styles.calendar}>
                 {days.map((d, index) => (
                     <Day
                         key={index}
@@ -105,11 +106,11 @@ const Calendar = () => {
         {
             clicked && !eventForDate(clicked) &&
             <NewEventModal
-            onClose={() => setClicked(null)}  
-            onSave={title => {
-                setEvents([...events, { title, date: clicked }])
-                setClicked(null);
-            }}
+                onClose={() => setClicked(null)}  
+                onSave={title => {
+                    setEvents([ ...events, { title, date: clicked }])
+                    setClicked(null);
+                }}
             />
         }
 

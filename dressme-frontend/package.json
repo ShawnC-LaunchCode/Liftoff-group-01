@@ -11,7 +11,7 @@
     "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-animated-weather": "^4.0.1",
-    "react-bootstrap": "^2.9.2",
+    "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "react-live-clock": "^6.1.19",
     "react-router-dom": "^6.21.0",
